@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bxfc8eo32abh4"]
+
+[ext_resource type="Texture2D" uid="uid://b25ggkxbiiyxw" path="res://Assets/Sprites/Chain.Png" id="1_2it6f"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.3484555, 0.3275299, 0.32621425, 1)
+albedo_texture = ExtResource("1_2it6f")

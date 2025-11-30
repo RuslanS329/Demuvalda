@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dsp3ru27o81fp"]
+
+[ext_resource type="Texture2D" uid="uid://b8gkm0wll6mpc" path="res://Assets/Map/Environment_str_stonebrk1.png" id="1_xrmes"]
+
+[resource]
+resource_name = "Bricks"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_xrmes")
+roughness = 0.5

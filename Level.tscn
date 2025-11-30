@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xb80vclj3ib"]
+
+[ext_resource type="PackedScene" uid="uid://cv5wwd4ab2xtr" path="res://Assets/Map/Environment.glb" id="1_bexhn"]
+[ext_resource type="PackedScene" uid="uid://drqhunhfhxwip" path="res://Entity/Player/player.tscn" id="2_t7iv1"]
+
+[node name="Environment" instance=ExtResource("1_bexhn")]
+
+[node name="Player" parent="." index="26" instance=ExtResource("2_t7iv1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.28413, 2.2268565, 12.089485)

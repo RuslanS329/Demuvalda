@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://by8lj2jsbylqa"]
+
+[ext_resource type="Texture2D" uid="uid://d0p10q0a37aa2" path="res://Assets/Map/Map_CNCC2.png" id="1_kffgp"]
+
+[resource]
+albedo_texture = ExtResource("1_kffgp")
+uv2_triplanar = true
+uv2_world_triplanar = true

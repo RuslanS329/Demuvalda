@@ -1,0 +1,257 @@
+[gd_scene load_steps=23 format=3 uid="uid://bdoi38st2t1v8"]
+
+[ext_resource type="PackedScene" uid="uid://cd4nbp2v2aiwt" path="res://Assets/Enemy/Demon1.glb" id="1_qngxm"]
+[ext_resource type="Script" uid="uid://cky3jxl7qj3m2" path="res://Entity/Enemies/Falling.cs" id="2_jhoal"]
+[ext_resource type="Script" uid="uid://refdenmujvel" path="res://Entity/Enemies/govnokod.cs" id="4_vvj5l"]
+[ext_resource type="PackedScene" uid="uid://chf2n10crjcus" path="res://Components/SmoothCollision.tscn" id="4_xu2it"]
+[ext_resource type="Script" uid="uid://fuyembwq3tov" path="res://Entity/Enemies/Health.cs" id="5_0bklo"]
+[ext_resource type="Script" uid="uid://cikcuav44ogkv" path="res://HitBox.cs" id="5_wfi3g"]
+[ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://HurtBox.cs" id="6_vhgxb"]
+[ext_resource type="Script" uid="uid://djuntv60qt7qb" path="res://Entity/Enemies/DvuNogSM.cs" id="6_wxqw1"]
+[ext_resource type="Script" uid="uid://o1re7ld8d468" path="res://Entity/Enemies/FleshSpawner.cs" id="8_jeqwv"]
+[ext_resource type="Script" uid="uid://b4hq0iq4222es" path="res://Entity/Enemies/WaitPlayer.cs" id="8_p16x1"]
+[ext_resource type="PackedScene" uid="uid://bwrqnf6y7ibkx" path="res://Props/flesh.tscn" id="9_fppij"]
+[ext_resource type="Script" uid="uid://bd4ogknjqloyf" path="res://Entity/Enemies/Bite.cs" id="10_4ygb5"]
+[ext_resource type="Script" uid="uid://bo0xy25sufihx" path="res://Entity/Enemies/Run.cs" id="10_wxqw1"]
+[ext_resource type="Script" uid="uid://clsddkqcp6i5b" path="res://Entity/Enemies/RunBack.cs" id="11_4ygb5"]
+[ext_resource type="Script" uid="uid://dqg2eogxmvnup" path="res://Entity/Enemies/Jump.cs" id="11_wfi3g"]
+[ext_resource type="Script" uid="uid://d3nqp0dilx7cc" path="res://Entity/Enemies/Hurt.cs" id="12_wfi3g"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wt2ss"]
+height = 0.52960205
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfi3g"]
+size = Vector3(0.46965027, 0.3840332, 1.8078461)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vhgxb"]
+size = Vector3(0.9767456, 0.3840332, 0.5663452)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvj5l"]
+size = Vector3(1.2382507, 0.94903564, 1.2866058)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0bklo"]
+height = 2.078125
+radius = 1.3583984
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wt2ss"]
+size = Vector3(4.4055023, 1.213974, 2.0968628)
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3470154, 0)
+shape = SubResource("CylinderShape3D_wt2ss")
+
+[node name="Falling" type="Node" parent="." node_paths=PackedStringArray("FloorRayCast")]
+script = ExtResource("2_jhoal")
+FloorRayCast = NodePath("../FloorRayCast")
+
+[node name="FloorRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0024095, 0)
+target_position = Vector3(0, -2.855, 0)
+
+[node name="Demon1" parent="." instance=ExtResource("1_qngxm")]
+transform = Transform3D(-0.0015009493, 0, 0.9999989, 0, 1, 0, -0.9999989, 0, -0.0015009493, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Demon1/Demon" index="0"]
+bones/0/position = Vector3(-1.0620565, 0.9525454, 1.06047146e-07)
+bones/0/rotation = Quaternion(3.3245378e-08, 1.0816295e-08, 0.023018124, 0.99973506)
+bones/1/rotation = Quaternion(0.06976911, 0.041720808, -0.5412939, 0.83689463)
+bones/2/rotation = Quaternion(-0.64987624, -2.6139261e-08, -0.31227416, 0.6929256)
+bones/3/rotation = Quaternion(-0.016455738, 0.14187387, -0.5093172, 0.8486442)
+bones/4/rotation = Quaternion(0.6260438, 0.003597337, 0.09419206, 0.77406985)
+bones/6/rotation = Quaternion(0.3847982, -0.18716402, -0.6285324, 0.64949757)
+bones/7/rotation = Quaternion(-0.5368717, -0.005740644, -0.16478685, 0.8273942)
+bones/8/rotation = Quaternion(1.2537694e-07, 1.1481081e-07, -0.4511134, 0.89246666)
+bones/9/rotation = Quaternion(4.267098e-08, 4.038197e-08, -0.17352787, 0.98482895)
+bones/9/scale = Vector3(1.0000001, 1.0000001, 1)
+bones/10/rotation = Quaternion(1.0472852e-07, -7.568163e-08, -0.5298105, 0.84811604)
+bones/10/scale = Vector3(1, 1, 1.0000001)
+bones/11/position = Vector3(-0.13187099, 0.45994112, -1.4232019e-08)
+bones/11/rotation = Quaternion(-9.706778e-08, 3.073404e-08, 0.6516566, 0.7585141)
+bones/11/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/12/position = Vector3(-0.051419977, 0.7141225, -5.5082023e-09)
+bones/12/rotation = Quaternion(-1.1682712e-07, 5.373341e-08, 0.65165675, 0.758514)
+bones/12/scale = Vector3(0.99999994, 1, 1)
+
+[node name="MouthCol" type="BoneAttachment3D" parent="Demon1/Demon/Skeleton3D" index="17"]
+transform = Transform3D(0.5929914, 0.8052089, 1.1332677e-07, -0.80520886, 0.5929915, -3.82125e-07, -3.748923e-07, 1.353451e-07, 1.0000001, 0.34899452, 1.9307027, 2.242648e-07)
+bone_name = "Jaw Upper"
+bone_idx = 11
+
+[node name="HitBox" type="Area3D" parent="Demon1/Demon/Skeleton3D/MouthCol" node_paths=PackedStringArray("Health")]
+transform = Transform3D(-0.000112816655, -0.9971899, -0.07491368, -0.0014965958, 0.07491382, -0.99718857, 0.9999987, -3.839375e-07, -0.0015008418, 1.238661, -1.2705404, 0.004235977)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("5_wfi3g")
+Health = NodePath("../../../../../Health")
+metadata/_custom_type_script = "uid://cikcuav44ogkv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Demon1/Demon/Skeleton3D/MouthCol/HitBox"]
+transform = Transform3D(0.041631542, -2.3642485e-30, 0.99913305, 0, 1, 0, -0.99913305, 0, 0.041631542, -0.13133493, 1.2338598, -1.3735282)
+shape = SubResource("BoxShape3D_wfi3g")
+
+[node name="HurtBox" type="Area3D" parent="Demon1/Demon/Skeleton3D/MouthCol"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("6_vhgxb")
+damage = 10.0
+metadata/_custom_type_script = "uid://r8md7aqnvibq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Demon1/Demon/Skeleton3D/MouthCol/HurtBox"]
+transform = Transform3D(0.0645005, -1.0723931, -0.0017188707, 1.0723983, 0.064502895, -0.001390322, 0.0014910125, -0.0016323106, 1.0743276, 0.14689171, 0.52581763, 0.00080350926)
+shape = SubResource("BoxShape3D_wfi3g")
+
+[node name="ColHead" type="BoneAttachment3D" parent="Demon1/Demon/Skeleton3D" index="18"]
+transform = Transform3D(-0.7066585, 0.7075551, -7.5657475e-08, -0.7075552, -0.70665836, -3.0628365e-07, -2.7017654e-07, -1.6290613e-07, 1.0000001, -0.06962693, 2.162418, 2.777956e-07)
+bone_name = "Head"
+bone_idx = 10
+
+[node name="HitBox" type="Area3D" parent="Demon1/Demon/Skeleton3D/ColHead" node_paths=PackedStringArray("Health")]
+transform = Transform3D(-0.000112816655, -0.9971899, -0.07491368, -0.0014965958, 0.07491382, -0.99718857, 0.9999987, -3.839375e-07, -0.0015008418, 1.238661, -1.2705404, 0.004235977)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("5_wfi3g")
+Health = NodePath("../../../../../Health")
+metadata/_custom_type_script = "uid://cikcuav44ogkv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Demon1/Demon/Skeleton3D/ColHead/HitBox"]
+transform = Transform3D(0.041631125, -1.0477379e-09, 0.99912155, -2.1904707e-06, 0.9999966, 6.984919e-08, -0.99912, -7.599592e-07, 0.04163127, -0.04376238, 1.2338595, -1.4716613)
+shape = SubResource("BoxShape3D_vhgxb")
+
+[node name="Body" type="BoneAttachment3D" parent="Demon1/Demon/Skeleton3D" index="19"]
+transform = Transform3D(0.99894035, -0.04602405, 2.3157357e-08, 0.04602405, 0.99894035, -6.597521e-08, -2.0096367e-08, 6.697108e-08, 1.0000001, -1.0620565, 0.9525454, 1.06047146e-07)
+bone_name = "Root"
+bone_idx = 0
+
+[node name="HitBox" type="Area3D" parent="Demon1/Demon/Skeleton3D/Body" node_paths=PackedStringArray("Health")]
+transform = Transform3D(-0.000112816655, -0.9971899, -0.07491368, -0.0014965958, 0.07491382, -0.99718857, 0.9999987, -3.839375e-07, -0.0015008418, 1.238661, -1.2705404, 0.004235977)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("5_wfi3g")
+Health = NodePath("../../../../../Health")
+metadata/_custom_type_script = "uid://cikcuav44ogkv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Demon1/Demon/Skeleton3D/Body/HitBox"]
+transform = Transform3D(0.041063588, 0.00055952393, 0.9991674, 0.54052615, 0.84102046, -0.022685489, -0.84032357, 0.54100144, 0.03423266, -0.07854743, 1.0291635, -1.2674634)
+shape = SubResource("BoxShape3D_vvj5l")
+
+[node name="AnimationPlayer" parent="Demon1" index="1" node_paths=PackedStringArray("boxes")]
+autoplay = "Idle"
+script = ExtResource("4_vvj5l")
+boxes = [NodePath("../Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon/Skeleton3D/ColHead/HitBox"), NodePath("../Demon/Skeleton3D/MouthCol/HitBox")]
+
+[node name="SmoothCollision" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("4_xu2it")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3971148, 0, -0.2647435)
+visible = false
+Parent = NodePath("..")
+Knockback = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmoothCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3372686, 1.0126953, 0)
+shape = SubResource("CylinderShape3D_0bklo")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("deleteNodeOnDeath")]
+script = ExtResource("5_0bklo")
+health = 100.0
+deleteNodeOnDeath = [NodePath("..")]
+
+[node name="FleshSpawner" type="Node3D" parent="." node_paths=PackedStringArray("hp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36281383, 0)
+script = ExtResource("8_jeqwv")
+fl = ExtResource("9_fppij")
+hp = NodePath("../Health")
+
+[node name="Detect" type="Area3D" parent="."]
+transform = Transform3D(-0.0062831044, 0, 0.9999804, 0, 1, 0, -0.9999804, 0, -0.0062831044, 0, 0, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Detect"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3782835, 1.183846, -0.28355098)
+depth = 1.97
+polygon = PackedVector2Array(-15.145247, 20.092636, 19.114178, 18.364712, 0.4228444, 0.17521334)
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Detect"]
+transform = Transform3D(-0.99995327, 0.0096690655, -4.2264828e-10, 0, -4.371139e-08, -1, -0.0096690655, -0.99995327, 4.3709345e-08, 1.178896, 1.183846, 0.2835502)
+depth = 1.97
+polygon = PackedVector2Array(-18.274427, 18.45245, 22.571545, 20.375671, 0.4228444, 0.17521334)
+
+[node name="AttackZone" type="Area3D" parent="."]
+transform = Transform3D(-0.0062831044, 0, 0.9999804, 0, 1, 0, -0.9999804, 0, -0.0062831044, 0, 0, -0.3724563)
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31669033, 1.1407242, -0.08078012)
+shape = SubResource("BoxShape3D_wt2ss")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debugl", "HitBox", "HurtState", "InitialState", "st")]
+script = ExtResource("6_wxqw1")
+debugl = NodePath("../Label")
+HitBox = [NodePath("../Demon1/Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/ColHead/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/MouthCol/HitBox")]
+HurtState = NodePath("Hurt")
+InitialState = NodePath("WaitPlayer")
+st = NodePath(".")
+
+[node name="WaitPlayer" type="Node" parent="StateMachine" node_paths=PackedStringArray("area", "anim", "RunState", "st")]
+script = ExtResource("8_p16x1")
+area = NodePath("../../Detect")
+anim = NodePath("../../Demon1/AnimationPlayer")
+RunState = NodePath("../Run")
+StateName = "WaitPlayer"
+st = NodePath("..")
+
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("BiteState", "body", "anim", "AttackArea", "st")]
+script = ExtResource("10_wxqw1")
+BiteState = NodePath("../Bite")
+speed = 5.0
+body = NodePath("../..")
+anim = NodePath("../../Demon1/AnimationPlayer")
+AttackArea = NodePath("../../AttackZone")
+StateName = "Run"
+st = NodePath("..")
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Bite" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim", "RunState", "RunBack", "JumpState", "hurtBox", "st")]
+script = ExtResource("10_4ygb5")
+anim = NodePath("../../Demon1/AnimationPlayer")
+RunState = NodePath("../Run")
+RunBack = NodePath("../RunBack")
+JumpState = NodePath("../Jump")
+hurtBox = NodePath("../../Demon1/Demon/Skeleton3D/MouthCol/HurtBox")
+StateName = "Bite"
+st = NodePath("..")
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="RunBack" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "anim", "BiteState", "RunState", "st")]
+script = ExtResource("11_4ygb5")
+speed = 8.0
+body = NodePath("../..")
+anim = NodePath("../../Demon1/AnimationPlayer")
+BiteState = NodePath("../Bite")
+RunState = NodePath(".")
+StateName = "RunBack"
+st = NodePath("..")
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "anim", "fall", "RunState", "st")]
+script = ExtResource("11_wfi3g")
+body = NodePath("../..")
+anim = NodePath("../../Demon1/AnimationPlayer")
+fall = NodePath("../../Falling")
+RunState = NodePath("../Run")
+StateName = "Jump"
+st = NodePath("..")
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("st")]
+script = ExtResource("12_wfi3g")
+st = NodePath("..")
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[editable path="Demon1"]

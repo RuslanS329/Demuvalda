@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://chf2n10crjcus"]
+
+[ext_resource type="Script" uid="uid://hik8ehbmwsl0" path="res://Components/SmoothCollision.cs" id="1_mj15l"]
+
+[node name="SmoothCollision" type="Area3D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_mj15l")

@@ -1,0 +1,81 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cv5wwd4ab2xtr"
+path="res://.godot/imported/Environment.glb-50f08e20be3d3ec5eee1d64bb8317119.scn"
+
+[deps]
+
+source_file="res://Assets/Map/Environment.glb"
+dest_files=["res://.godot/imported/Environment.glb-50f08e20be3d3ec5eee1d64bb8317119.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=1
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Bricks": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Bricks.tres",
+"use_external/path": "uid://dsp3ru27o81fp"
+},
+"Bricks2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Bricks2.tres",
+"use_external/path": "uid://w8mue0fojwmi"
+},
+"Bricks3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Bricks3.tres",
+"use_external/path": "uid://dn2iptd3w727v"
+},
+"Columns": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Columns.tres",
+"use_external/path": "uid://c8o20apmo1aak"
+},
+"Grass": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Grass.tres",
+"use_external/path": "uid://bjqyak4pnuw2y"
+},
+"Roof": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Roof.tres",
+"use_external/path": "uid://b8yaxegwyvs6c"
+},
+"Wood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Map/Wood.tres",
+"use_external/path": "uid://dgvl0jq2ke0tx"
+},
+"window": null
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

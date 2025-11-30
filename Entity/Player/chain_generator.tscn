@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bieyoawqvarn0"]
+
+[ext_resource type="Script" uid="uid://b1fu7li8ugdmn" path="res://Entity/Player/ChainGenerator.cs" id="1_vrevg"]
+
+[node name="ChainGenerator" type="MeshInstance3D"]
+script = ExtResource("1_vrevg")

@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://d3jpvb1wyrpw2"]
+
+[ext_resource type="Shader" uid="uid://d2c4upxi12465" path="res://UI/player_ui.gdshader" id="1_8w2om"]
+[ext_resource type="Texture2D" uid="uid://bjbvfa5ek7pl0" path="res://Assets/Sprites/photo_5231255078767890331_y.jpg" id="1_kwigr"]
+[ext_resource type="Script" uid="uid://drbap6gvpkpt2" path="res://UI/PlayerUi.cs" id="1_qf5vc"]
+[ext_resource type="Texture2D" uid="uid://bk2mvblnlffp3" path="res://Assets/Sprites/photo_5231069042259463965_y (1).jpg" id="1_xmsn8"]
+[ext_resource type="Texture2D" uid="uid://x7xkuskt0vyv" path="res://Assets/Sprites/photo_5231255078767890334_y.jpg" id="2_b8q8m"]
+[ext_resource type="Texture2D" uid="uid://bolsnufhadmuh" path="res://Assets/Sprites/photo_5231255078767890330_y (1).jpg" id="3_ccqt3"]
+[ext_resource type="Texture2D" uid="uid://df82bj2otuu1u" path="res://Assets/Sprites/photo_5231255078767890333_y.jpg" id="4_b8q8m"]
+[ext_resource type="Texture2D" uid="uid://cmjh821awkjvk" path="res://Assets/Sprites/photo_5231255078767890332_y.jpg" id="4_ccqt3"]
+
+[sub_resource type="Gradient" id="Gradient_8w2om"]
+offsets = PackedFloat32Array(0.37583894, 0.4194631, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.84364784, 0, 0.18210337, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8w2om"]
+frequency = 0.045
+fractal_lacunarity = 1.99
+fractal_gain = 0.53
+fractal_weighted_strength = 0.28
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qf5vc"]
+noise = SubResource("FastNoiseLite_8w2om")
+color_ramp = SubResource("Gradient_8w2om")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf5vc"]
+shader = ExtResource("1_8w2om")
+shader_parameter/disappearX = 0.4
+shader_parameter/text = ExtResource("1_xmsn8")
+shader_parameter/value1 = 0.0
+shader_parameter/value2 = 0.0
+shader_parameter/color1 = Color(0.37161642, 0.000607747, 4.813075e-08, 1)
+shader_parameter/color2 = Color(0.28, 0, 0, 0)
+shader_parameter/noise = SubResource("NoiseTexture2D_qf5vc")
+
+[sub_resource type="Gradient" id="Gradient_qf5vc"]
+offsets = PackedFloat32Array(0, 0.9966443)
+colors = PackedColorArray(0, 0, 0, 1, 0.52774405, 0.32153848, 0.5298416, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_an3gc"]
+frequency = 0.0214
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_byocv"]
+noise = SubResource("FastNoiseLite_an3gc")
+color_ramp = SubResource("Gradient_qf5vc")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwocb"]
+shader = ExtResource("1_8w2om")
+shader_parameter/disappearX = 0.405
+shader_parameter/text = ExtResource("2_b8q8m")
+shader_parameter/value1 = 0.0
+shader_parameter/value2 = 0.0
+shader_parameter/color1 = Color(0.5333242, 1.0949746e-06, 2.8878452e-07, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_byocv")
+
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("tr", "tr2")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qf5vc")
+tr = NodePath("Control/HpBarFill")
+tr2 = NodePath("Control/Balls")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(500, 250)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HpBarFill" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_qf5vc")
+layout_mode = 0
+offset_left = 86.99999
+offset_top = -83.99999
+offset_right = 1367.0
+offset_bottom = 1196.0
+rotation = -0.014487882
+scale = Vector2(0.41079125, 0.27010456)
+texture = ExtResource("1_xmsn8")
+
+[node name="HpBar" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = -160.0
+offset_right = 649.0
+offset_bottom = 352.0
+texture = ExtResource("1_kwigr")
+
+[node name="Balls" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_fwocb")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.58962154, 0.58962154)
+texture = ExtResource("2_b8q8m")
+
+[node name="DemonBar" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 40.0
+offset_right = 1554.0
+offset_bottom = 1320.0
+scale = Vector2(0.32891887, 0.3140093)
+texture = ExtResource("3_ccqt3")
+
+[node name="Photo5231255078767890332Y" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 164.99998
+offset_right = 1856.0
+offset_bottom = 1445.0
+scale = Vector2(0.1230818, 0.1230818)
+texture = ExtResource("4_ccqt3")
+
+[node name="Photo5231255078767890333Y" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 213.00002
+offset_top = 148.00002
+offset_right = 725.0
+offset_bottom = 660.0
+scale = Vector2(0.34038997, 0.34038997)
+texture = ExtResource("4_b8q8m")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://kbwt1xtpcvcy"]
+
+[ext_resource type="Texture2D" uid="uid://ckyiv0nisqnsb" path="res://Assets/Sprites/11.png" id="1_ttxbt"]
+[ext_resource type="Script" uid="uid://cj8w04r2um6f5" path="res://DeleteParentTimer.cs" id="2_n1ly3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ttxbt"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 4.1
+initial_velocity_max = 4.5499997
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttxbt"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+albedo_texture = ExtResource("1_ttxbt")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_2211b"]
+material = SubResource("StandardMaterial3D_ttxbt")
+size = Vector2(0.4, 0.4)
+
+[node name="KuvaldaHitParticle" type="GPUParticles3D"]
+amount = 16
+explosiveness = 0.94
+process_material = SubResource("ParticleProcessMaterial_ttxbt")
+draw_pass_1 = SubResource("QuadMesh_2211b")
+
+[node name="DeleteParentTimer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("2_n1ly3")
+metadata/_custom_type_script = "uid://cj8w04r2um6f5"

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://sjjgrdjdvqsv"]
+
+[resource]
+resource_name = "window"
+cull_mode = 2
+albedo_color = Color(1, 0.8556091, 0.5061782, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.98378986, 1, 0.42772153, 1)
