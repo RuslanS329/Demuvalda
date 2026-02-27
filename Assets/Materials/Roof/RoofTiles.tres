@@ -1,0 +1,19 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://dp4vrfm8knls7"]
+
+[ext_resource type="Texture2D" uid="uid://ss0d3i0uscm3" path="res://Assets/Materials/Roof/RoofTiles_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://btpkkrox1s2fo" path="res://Assets/Materials/Roof/RoofTiles_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c01dh6m67e5p5" path="res://Assets/Materials/Roof/RoofTiles_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://3kk1jtl42pbg" path="res://Assets/Materials/Roof/RoofTiles_heightmap.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")
+heightmap_enabled = true
+heightmap_scale = 6.0
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("4")
+uv1_scale = Vector3(1.31, 8.59, 0)

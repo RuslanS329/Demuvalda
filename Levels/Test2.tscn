@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dal0qcx4malic"]
+
+[ext_resource type="Material" uid="uid://d11j6hthb53ip" path="res://Assets/Materials/stoneplates.tres" id="1_yjt3m"]
+[ext_resource type="PackedScene" uid="uid://drqhunhfhxwip" path="res://Entity/Player/player.tscn" id="2_yjt3m"]
+[ext_resource type="Material" uid="uid://cvrvrfx7f4ts6" path="res://Assets/Materials/bricks/bricks.tres" id="3_a5djd"]
+[ext_resource type="Material" path="res://Assets/Materials/Roof/RoofTiles.tres" id="4_ssric"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yjt3m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_a5djd"]
+sky_material = SubResource("ProceduralSkyMaterial_yjt3m")
+
+[sub_resource type="Environment" id="Environment_ssric"]
+background_mode = 2
+sky = SubResource("Sky_a5djd")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D" unique_id=1230865288]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1788690734]
+environment = SubResource("Environment_ssric")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=92456834]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1571290212]
+transform = Transform3D(21.073254, 0, 0, 0, 1, 0, 0, 0, 21.073254, -0.14020157, -0.68822193, -0.09308034)
+material_override = ExtResource("1_yjt3m")
+use_collision = true
+
+[node name="Player" parent="." unique_id=394164530 instance=ExtResource("2_yjt3m")]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=225292273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.163133)
+material_override = ExtResource("3_a5djd")
+use_collision = true
+size = Vector3(2.83, 2.055, 2.715)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=156072548]
+transform = Transform3D(-5.2154064e-08, 0, 1, 0, 1, 0, -1, 0, -5.2154064e-08, 1.4, 0, 5.1668606)
+material_override = ExtResource("4_ssric")
+polygon = PackedVector2Array(-1.3715415, 2.0398662, -8.317828e-05, 2.99762, 1.4167128, 2.034199)
+depth = 2.62

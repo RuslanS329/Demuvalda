@@ -1,0 +1,19 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://cvrvrfx7f4ts6"]
+
+[ext_resource type="Texture2D" uid="uid://b3q1pcjunsdtv" path="res://Assets/Materials/bricks/bricks_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ce0frrck7y1lp" path="res://Assets/Materials/bricks/bricks_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxljxhcgye8o3" path="res://Assets/Materials/bricks/bricks_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://tau7d50btdlx" path="res://Assets/Materials/bricks/bricks_heightmap.png" id="4"]
+
+[resource]
+albedo_color = Color(0.59375, 0.48111725, 0.3363037, 1)
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")
+heightmap_enabled = true
+heightmap_scale = 7.5
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("4")
