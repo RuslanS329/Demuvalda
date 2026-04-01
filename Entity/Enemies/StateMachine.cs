@@ -4,25 +4,28 @@ using System.Collections.Generic;
 public partial class StateMachine : State
 {
     [Signal] public delegate void StateChangedEventHandler();
-    //[Export] Godot.Collections.Array<Node> statesArray;
+   
+    Godot.Collections.Dictionary<string,State> States;
+
     [Export] public State InitialState;
     
-    public Dictionary<string,State> states;
 
     public State CurrentState;
 
     
     public override void _Ready()
     {
-        
-        //foreach (State entry in statesArray)
-        //{
-        //    if (entry != null && !string.IsNullOrEmpty(entry.StateName))
-        //    {
-        //        states[entry.StateName] = entry;
-        //        GD.Print($"Loaded state: {entry.StateName} -> {entry}");
-        //    }
-        //}
+        var children = GetChildren();
+        foreach(var child in children)
+        {
+            if(child is State state)
+            {
+                state.init(this);
+                States[state.StateName] = state;
+            }
+        }
+
+   
         CurrentState = InitialState;
         init();
     }
@@ -36,14 +39,14 @@ public partial class StateMachine : State
         CurrentState.Do(delta);
         
     }
-    public void ChangeState(State state)
+    public void ChangeState(string stateName)
     {
-        GD.Print("ChangeState : ", state.StateName);
+        GD.Print("ChangeState : ", States[stateName]);
 
         if (CurrentState != null) CurrentState.Exit();
-        CurrentState = state;
+        CurrentState = States[stateName];
         CurrentState.Enter();
-        //EmitSignal(SignalName.StateChanged);
+        EmitSignal(SignalName.StateChanged);
     }
     public override void Do(double delta)
     {

@@ -24,6 +24,7 @@ public partial class Player : CharacterBody3D
     [Export] float Speed = 6.0f;
     [Export] float WalkSpeed = 6.0f;
     [Export] float RunSpeed = 10.0f;
+    public float speedMultiplier = 1.0f;
     float acceleration = 0.3f;
 
 
@@ -192,8 +193,8 @@ public partial class Player : CharacterBody3D
     }
     public Vector3 lerpVelocityXZ(Vector3 velocity, Vector3 direction, float speed)
     {
-        velocity.X = Mathf.Lerp(Velocity.X, direction.X * speed, acceleration);
-        velocity.Z = Mathf.Lerp(Velocity.Z, direction.Z * speed, acceleration);
+        velocity.X = Mathf.Lerp(Velocity.X, direction.X * speed * speedMultiplier, acceleration);
+        velocity.Z = Mathf.Lerp(Velocity.Z, direction.Z * speed * speedMultiplier, acceleration);
 
         return velocity;
     }

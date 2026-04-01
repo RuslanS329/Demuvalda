@@ -43,7 +43,7 @@ public partial class RunBack : State
     {
         int random = new Random().Next(1, 2);
         State action = random == 1 ? RunState : BiteState;
-        st.ChangeState(action);
+        //st.ChangeState(action);
     }
     public override void Exit()
     {

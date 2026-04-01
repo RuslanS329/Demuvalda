@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cmehgjok8f25g" path="res://Scripts/Tools/ParticlesSpawner.cs" id="5_8pnxb"]
 [ext_resource type="PackedScene" uid="uid://p8x8mppibpgu" path="res://Entity/hit_particles.tscn" id="6_2rgnx"]
 [ext_resource type="PackedScene" uid="uid://kbwt1xtpcvcy" path="res://Entity/kuvalda_hit_particle.tscn" id="6_qfya7"]
-[ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://HurtBox.cs" id="7_2rgnx"]
+[ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://Components/HurtBox.cs" id="7_2rgnx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdd6a"]
 resource_name = "Kuvalda"

@@ -27,7 +27,7 @@ public partial class DvuNogSM : StateMachine
     }
     public void hit()
     {
-        ChangeState(HurtState);
+        //ChangeState(HurtState);
     }
 
 

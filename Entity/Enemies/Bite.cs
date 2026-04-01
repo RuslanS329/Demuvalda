@@ -54,7 +54,7 @@ public partial class Bite : State
             
             chance = new Random().NextDouble();
            
-            st.ChangeState(RunState);
+            //st.ChangeState(RunState);
             hurtBox.hurt = false;
             hurtBox.ignoreList.Clear();
             

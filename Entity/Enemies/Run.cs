@@ -50,7 +50,7 @@ public partial class Run : State
         if(body is Player)
         {
             
-            st.ChangeState(BiteState);
+            //st.ChangeState(BiteState);
 
         }
     }

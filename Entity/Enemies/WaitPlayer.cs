@@ -43,7 +43,7 @@ public partial class WaitPlayer : State
     {
         if (name == "Detected")
         {
-            st.ChangeState(RunState);
+            //st.ChangeState(RunState);
         }
     }
 }

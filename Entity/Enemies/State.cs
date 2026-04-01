@@ -4,13 +4,13 @@ using System;
 public partial class State : Node
 {
     [Export] public string StateName = "";
-    [Export] public StateMachine st;
+    public StateMachine st;
 
     
     
     public virtual void init(StateMachine sm)
     {
-        
+        st = sm;
     }
     public virtual void Do(double delta)
     {
