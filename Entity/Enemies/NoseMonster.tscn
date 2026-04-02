@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://if4pp3lv3r3b"]
+
+[ext_resource type="PackedScene" uid="uid://dr78g382n12fa" path="res://Assets/Enemy/NoseMonster/NoseMonster.glb" id="1_0lfwc"]
+[ext_resource type="Script" uid="uid://fuyembwq3tov" path="res://Entity/Enemies/Health.cs" id="2_twh1s"]
+[ext_resource type="Script" uid="uid://cikcuav44ogkv" path="res://Components/HitBox.cs" id="3_3necw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3necw"]
+size = Vector3(1.324234, 2.376709, 1.6225586)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0lfwc"]
+height = 2.1189575
+
+[node name="NoseMonster" type="CharacterBody3D" unique_id=885342362]
+
+[node name="NoseMonster" parent="." unique_id=1162515928 instance=ExtResource("1_0lfwc")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="NoseMonster/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1162515928, 295885988) index="4" unique_id=121112665]
+transform = Transform3D(1, 0, 2.3841855e-07, 0, 1, 0, -2.3841855e-07, 0, 1, 0, -0.29627082, 0)
+bone_name = "Root"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("..")
+
+[node name="HitBox" type="Area3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D" unique_id=277266619 node_paths=PackedStringArray("Health")]
+transform = Transform3D(1, 0, -2.3841855e-07, 0, 1, 0, 2.3841855e-07, 0, 1, 0, 0.29627082, 0)
+script = ExtResource("3_3necw")
+Health = NodePath("../../../../../Health")
+metadata/_custom_type_script = "uid://cikcuav44ogkv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HitBox" unique_id=381270199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105400085, 1.12146, 0.005126953)
+shape = SubResource("BoxShape3D_3necw")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HitBox" unique_id=1032082979]
+polygon = PackedVector2Array(2.191899, 0.55109906, 2.1764915, 1.4062219, 0.7281754, 2.415421, 0.61261797, 0.6050257)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=489288176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07620239, 0)
+shape = SubResource("CapsuleShape3D_0lfwc")
+
+[node name="Health" type="Node" parent="." unique_id=1680524775 node_paths=PackedStringArray("deleteNodeOnDeath")]
+script = ExtResource("2_twh1s")
+deleteNodeOnDeath = [NodePath("..")]
+metadata/_custom_type_script = "uid://fuyembwq3tov"
+
+[editable path="NoseMonster"]

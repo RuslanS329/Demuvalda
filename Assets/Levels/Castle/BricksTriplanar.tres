@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://gfbdfr0p8x70"]
+
+[ext_resource type="Texture2D" uid="uid://dvnxmh6olmj27" path="res://Assets/Levels/Castle/Castle_StBricks_albedo.png" id="1_n4e5g"]
+[ext_resource type="Texture2D" uid="uid://d1c7fnprd5iy6" path="res://Assets/Levels/Castle/Castle_StBricks_orm.png" id="2_ns1to"]
+[ext_resource type="Texture2D" uid="uid://cmil3skto3oou" path="res://Assets/Levels/Castle/Castle_StBricks_normal.png" id="3_njh77"]
+
+[resource]
+resource_name = "Bricks"
+cull_mode = 2
+albedo_texture = ExtResource("1_n4e5g")
+metallic_texture = ExtResource("2_ns1to")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_ns1to")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_njh77")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true

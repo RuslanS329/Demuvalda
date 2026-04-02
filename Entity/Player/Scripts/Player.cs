@@ -25,7 +25,7 @@ public partial class Player : CharacterBody3D
     [Export] float WalkSpeed = 6.0f;
     [Export] float RunSpeed = 10.0f;
     public float speedMultiplier = 1.0f;
-    float acceleration = 0.3f;
+    float acceleration = 0.2f;
 
 
 

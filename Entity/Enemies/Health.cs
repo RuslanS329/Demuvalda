@@ -26,7 +26,6 @@ public partial class Health : Node
     [Export]
     public bool deleteParentOnDeath = true;
     [Export] Node[] deleteNodeOnDeath;
-    [Export] PlayerUi pui;
 
     //[ExportGroup("Additional")]
     //[Export] PackedScene bloodParticles;
@@ -46,10 +45,7 @@ public partial class Health : Node
         }
 
         health -= amount;
-        if (pui != null)
-        {
-            pui.SetHp(health);
-        }
+       
 
 
         EmitSignal(SignalName.changed, health);

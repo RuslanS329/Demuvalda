@@ -4,40 +4,52 @@ using System.Collections.Generic;
 public partial class StateMachine : State
 {
     [Signal] public delegate void StateChangedEventHandler();
-   
-    Godot.Collections.Dictionary<string,State> States;
 
+    //Children States Dictionary
+    Godot.Collections.Dictionary<string, State> States = new();
+
+    //State that sets at initialization
     [Export] public State InitialState;
-    
 
+    //Current State
     public State CurrentState;
 
-    
+
     public override void _Ready()
     {
+        init();
+    }
+    public void getChildrenStates()
+    {
         var children = GetChildren();
-        foreach(var child in children)
+        foreach (var child in children)
         {
-            if(child is State state)
+            if (child is State state)
             {
                 state.init(this);
-                States[state.StateName] = state;
+                if (States.ContainsKey(state.Name))
+                {
+                    States.Add(state.Name, state);
+                }
+                else
+                {
+                    States[state.StateName] = state;
+                }
+                GD.Print("Added state:" + state.Name);
             }
         }
-
-   
-        CurrentState = InitialState;
-        init();
     }
     public virtual void init()
     {
-
+        getChildrenStates();
+        CurrentState = InitialState;
+        CurrentState.Enter();
     }
     public override void _PhysicsProcess(double delta)
     {
-        
+
         CurrentState.Do(delta);
-        
+
     }
     public void ChangeState(string stateName)
     {

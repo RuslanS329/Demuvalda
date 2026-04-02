@@ -6,6 +6,9 @@ public partial class KuvaldaController2 : Node
 {
     [Export] Player player;
     [Export] AnimationPlayer kuvaldaAnimationPlayer;
+    [Export] HurtBox kuvaldaHurtBox;
+    [Export] Timer hitTargetStunTimer;
+    [Export] Label lbl;
     public enum KuvaldaStates
     {
         Idle,
@@ -16,8 +19,13 @@ public partial class KuvaldaController2 : Node
 
     }
     public KuvaldaStates State = KuvaldaStates.Idle;
+    public override void _Ready()
+    {
+        hitTargetStunTimer.Timeout += onHitTargetStunTimerTimeout;
+    }
     public override void _PhysicsProcess(double delta)
     {
+        lbl.Text = kuvaldaAnimationPlayer.CurrentAnimation + "\n" + State;
         switch(State)
         {
             case KuvaldaStates.Idle:
@@ -57,6 +65,9 @@ public partial class KuvaldaController2 : Node
         {
             kuvaldaAnimationPlayer.Play("Hit");
             State = KuvaldaStates.Hit;
+            kuvaldaHurtBox.hurt = true;
+            kuvaldaHurtBox.hit += () => { kuvaldaAnimationPlayer.Pause(); hitTargetStunTimer.Start(); };
+            
         }
         player.speedMultiplier = 0.4f;
     }
@@ -83,5 +94,12 @@ public partial class KuvaldaController2 : Node
         {
             State = KuvaldaStates.Idle;
         }
+    }
+    public void onHitTargetStunTimerTimeout()
+    {
+        kuvaldaAnimationPlayer.Play();
+        kuvaldaAnimationPlayer.Queue("Returning");
+        //State = KuvaldaStates.Returning;
+
     }
 } 

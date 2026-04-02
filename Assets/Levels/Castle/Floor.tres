@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://da1fn1o5rthir"]
+
+[ext_resource type="Texture2D" uid="uid://n5v0ihokeyoi" path="res://Assets/Levels/Castle/Castle_StBricksFloor_albedo.png" id="1_5mvpm"]
+[ext_resource type="Texture2D" uid="uid://byf51atfwuy0d" path="res://Assets/Levels/Castle/Castle_StBricksFloor_rough.png" id="2_0myql"]
+[ext_resource type="Texture2D" uid="uid://bce4d2jogc6x6" path="res://Assets/Levels/Castle/Castle_StBricksFloor_normal.png" id="3_eooak"]
+
+[resource]
+resource_name = "Floor"
+cull_mode = 2
+albedo_texture = ExtResource("1_5mvpm")
+metallic_texture = ExtResource("2_0myql")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_0myql")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_eooak")
+uv1_scale = Vector3(2, 2, 2)

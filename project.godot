@@ -35,7 +35,7 @@ Shortcuts/density_decrement=Object(Shortcut,"resource_local_to_scene":false,"res
 [application]
 
 config/name="Demuvalda"
-run/main_scene="uid://4yhg2bum7ils"
+run/main_scene="uid://gvjvrqq26pxw"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 

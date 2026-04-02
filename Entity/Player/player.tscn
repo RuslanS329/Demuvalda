@@ -2,20 +2,33 @@
 
 [ext_resource type="Script" uid="uid://c5lvi46ua5y7l" path="res://Entity/Player/Scripts/Player.cs" id="1_mc1dd"]
 [ext_resource type="Script" uid="uid://be2ybsoef4s20" path="res://Entity/Player/Scripts/HeadBob.cs" id="2_x1f5c"]
-[ext_resource type="Shader" uid="uid://dmuhsx7nv58i8" path="res://Shaders/Pixelate.gdshader" id="3_jksyu"]
+[ext_resource type="Script" uid="uid://cakqyd7uug5l5" path="res://addons/DwarfImpulse/Runtime/ShakeDirector3D.cs" id="3_ljdv1"]
 [ext_resource type="Script" uid="uid://dbi8rnqi677de" path="res://Entity/Player/Hands.cs" id="3_viyt1"]
+[ext_resource type="Script" uid="uid://dryfuq0xjusox" path="res://Entity/Player/CameraShakerPlayer.cs" id="3_wty2p"]
 [ext_resource type="Script" uid="uid://g5sl16j744of" path="res://Entity/Player/KuvaldaController2.cs" id="6_eiw37"]
 [ext_resource type="Material" uid="uid://dt0c6cvqohd3r" path="res://Assets/Player/Kuvalda/Kuvalda.tres" id="6_eo8dx"]
-[ext_resource type="PackedScene" uid="uid://bieyoawqvarn0" path="res://Entity/Player/chain_generator.tscn" id="12_vhflw"]
-[ext_resource type="Material" uid="uid://bxfc8eo32abh4" path="res://Entity/Player/new_standard_material_3d.tres" id="13_eiw37"]
+[ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://Components/HurtBox.cs" id="7_3abr6"]
 [ext_resource type="AudioStream" uid="uid://dxabj4v85qt6y" path="res://Assets/Player/Sounds/Hit.wav" id="14_cqswv"]
 [ext_resource type="PackedScene" uid="uid://chf2n10crjcus" path="res://Components/SmoothCollision.tscn" id="15_cqswv"]
 [ext_resource type="Script" uid="uid://bbpj7mtmdff8k" path="res://Entity/Player/SoundOnAnimation.cs" id="15_eb64r"]
 [ext_resource type="AudioStream" uid="uid://cqhlqka56a75n" path="res://Assets/Player/Sounds/SighSwing.wav" id="15_ghdcn"]
 [ext_resource type="PackedScene" uid="uid://d3jpvb1wyrpw2" path="res://UI/player_ui.tscn" id="17_eb64r"]
+[ext_resource type="Script" uid="uid://cbg3hds5csxsi" path="res://Entity/Player/HpBar.cs" id="17_lj4m2"]
+[ext_resource type="Script" uid="uid://b784rccv60o5p" path="res://Entity/Player/HurtSounds.cs" id="17_wty2p"]
+[ext_resource type="AudioStream" uid="uid://bxl06wd4edngm" path="res://Assets/Player/PlayerHurtSounds/1.wav" id="18_3abr6"]
 [ext_resource type="Script" uid="uid://fuyembwq3tov" path="res://Entity/Enemies/Health.cs" id="18_6pvm4"]
 [ext_resource type="Script" uid="uid://cikcuav44ogkv" path="res://Components/HitBox.cs" id="18_lj4m2"]
+[ext_resource type="Texture2D" uid="uid://d4lhgh50wagcd" path="res://Assets/Sprites/HurtVignette.png" id="18_qndt7"]
+[ext_resource type="Script" uid="uid://ddgh5bon62kl3" path="res://Entity/Player/HurtVignette.cs" id="19_hkdd6"]
+[ext_resource type="AudioStream" uid="uid://cl151sofrcfrt" path="res://Assets/Player/PlayerHurtSounds/2.wav" id="19_ljdv1"]
+[ext_resource type="AudioStream" uid="uid://u6e87gm52lre" path="res://Assets/Player/PlayerHurtSounds/3.wav" id="20_ff4qf"]
 [ext_resource type="Script" uid="uid://404wdbiydknu" path="res://Entity/Player/OnPlayerLose.cs" id="20_qndt7"]
+[ext_resource type="AudioStream" uid="uid://snwx2r4btcbr" path="res://Assets/Player/PlayerHurtSounds/4.wav" id="21_872wd"]
+[ext_resource type="AudioStream" uid="uid://bnf0717t7hou1" path="res://Assets/Player/PlayerHurtSounds/5.wav" id="22_jbs27"]
+[ext_resource type="AudioStream" uid="uid://bijv3y3eqlqsb" path="res://Assets/Player/PlayerHurtSounds/6.wav" id="23_eggcg"]
+[ext_resource type="AudioStream" uid="uid://bcoyj6y8v86j8" path="res://Assets/Player/PlayerHurtSounds/7.wav" id="24_8l768"]
+[ext_resource type="AudioStream" uid="uid://1x7cgtrn7pb5" path="res://Assets/Player/PlayerHurtSounds/8.wav" id="25_al5gi"]
+[ext_resource type="AudioStream" uid="uid://dsefjebvkmm0q" path="res://Assets/Player/PlayerHurtSounds/9.wav" id="26_qpjtw"]
 
 [sub_resource type="Curve" id="Curve_x1f5c"]
 _limits = [0.0, 0.7, 0.0, 0.5]
@@ -32,13 +45,8 @@ rings = 4
 radius = 0.4
 height = 1.8
 
-[sub_resource type="QuadMesh" id="QuadMesh_jksyu"]
-size = Vector2(2.29, 1.7)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jksyu"]
-render_priority = 0
-shader = ExtResource("3_jksyu")
-shader_parameter/size = Vector2(4, 4)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3abr6"]
+frequency = 0.0035
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_p708d"]
 _surfaces = [{
@@ -73,6 +81,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p708d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljdv1"]
+size = Vector3(0.17529297, 0.21459961, 0.47961426)
 
 [sub_resource type="Animation" id="Animation_11yvv"]
 resource_name = "Base"
@@ -199,6 +210,12 @@ radius = 0.7470703
 [sub_resource type="BoxShape3D" id="BoxShape3D_6pvm4"]
 size = Vector3(1, 1.8995361, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghdcn"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb64r"]
+bg_color = Color(0.6, 0.08999999, 0.08999999, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=1133191554 node_paths=PackedStringArray("cam", "headBob") groups=["Player"]]
 collision_layer = 512
 script = ExtResource("1_mc1dd")
@@ -221,13 +238,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 shape = SubResource("CapsuleShape3D_qb0yx")
 
-[node name="BoneAttachment" type="BoneAttachment3D" parent="." unique_id=2102182333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4030181, 0)
-bone_name = "Bone"
-bone_idx = 0
-use_external_skeleton = true
-external_skeleton = NodePath("../Head/Hands/Kuvalda1/Kuvald/Skeleton3D")
-
 [node name="Head" type="Node3D" parent="." unique_id=1314171394]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4727535, 0)
 script = ExtResource("2_x1f5c")
@@ -239,19 +249,17 @@ run_tilt_amplitude = 0.2
 run_tilt_speed = 16.0
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1203921918]
-visible = false
+transform = Transform3D(1, 8.7041485e-14, -2.8188563e-13, -8.7041485e-14, 1, -1.1687629e-10, 2.8188563e-13, 1.1687629e-10, 1, 4.516746e-08, 4.1389114e-13, 0)
 
-[node name="PostProcess" type="MeshInstance3D" parent="Head/Camera3D" unique_id=1766824753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.23664498)
-visible = false
-mesh = SubResource("QuadMesh_jksyu")
-surface_material_override/0 = SubResource("ShaderMaterial_jksyu")
+[node name="CameraShake" type="Node" parent="Head/Camera3D" unique_id=1007382364 node_paths=PackedStringArray("hbox", "shakeDirector")]
+script = ExtResource("3_wty2p")
+hbox = NodePath("../../Hands/Kuvalda1/Kuvald/Skeleton3D/Bone/HurtBox")
+shakeDirector = NodePath("../CameraShaker")
+noise = SubResource("FastNoiseLite_3abr6")
 
-[node name="KuvaldaRayCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1031322933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.016227365, 0)
-visible = false
-target_position = Vector3(0, 0, -100)
-debug_shape_custom_color = Color(0.7134962, 0, 0.3480713, 1)
+[node name="CameraShaker" type="Node3D" parent="Head/Camera3D" unique_id=1284727009 node_paths=PackedStringArray("Target")]
+script = ExtResource("3_ljdv1")
+Target = NodePath("..")
 
 [node name="Hands" type="Node3D" parent="Head" unique_id=1359850497 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_viyt1")
@@ -259,10 +267,13 @@ camera = NodePath("../Camera3D")
 
 [node name="Kuvalda1" type="Node3D" parent="Head/Hands" unique_id=1662542784]
 
-[node name="KuvaldaController" type="Node" parent="Head/Hands/Kuvalda1" unique_id=740471605 node_paths=PackedStringArray("player", "kuvaldaAnimationPlayer")]
+[node name="KuvaldaController" type="Node" parent="Head/Hands/Kuvalda1" unique_id=740471605 node_paths=PackedStringArray("player", "kuvaldaAnimationPlayer", "kuvaldaHurtBox", "hitTargetStunTimer", "lbl")]
 script = ExtResource("6_eiw37")
 player = NodePath("../../../..")
 kuvaldaAnimationPlayer = NodePath("../AnimationPlayer")
+kuvaldaHurtBox = NodePath("../Kuvald/Skeleton3D/Bone/HurtBox")
+hitTargetStunTimer = NodePath("../../../../Timings/HitTargetStun")
+lbl = NodePath("../../../../Label")
 
 [node name="Kuvald" type="Node3D" parent="Head/Hands/Kuvalda1" unique_id=1986616178]
 
@@ -271,12 +282,12 @@ bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06973537, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, -0.06973537, 0)
-bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/position = Vector3(0.005148668, -0.43059316, -0.57772505)
+bones/0/rotation = Quaternion(-0.8796255, -0.027909376, -0.06624802, 0.47020343)
 bones/0/scale = Vector3(1, 1, 1)
 
 [node name="Bone" type="BoneAttachment3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D" unique_id=1613902999]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06973537, 0)
+transform = Transform3D(0.98966455, 0.111399695, 0.09030073, -0.013200495, -0.55625963, 0.8309037, 0.14279306, -0.82350796, -0.54903984, 0.005148668, -0.43059316, -0.57772505)
 bone_name = "Bone"
 bone_idx = 0
 
@@ -284,15 +295,21 @@ bone_idx = 0
 transform = Transform3D(0.9999999, 1.1175871e-08, 5.2041714e-17, -1.1175871e-08, 0.9999999, 9.313226e-09, 5.204171e-17, -9.313226e-09, 0.99999994, -5.5879354e-09, 0.06973535, 4.8894435e-09)
 mesh = SubResource("ArrayMesh_wnwx4")
 
+[node name="HurtBox" type="Area3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D/Bone" unique_id=351094021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0082353, 0)
+script = ExtResource("7_3abr6")
+damage = 60.0
+metadata/_custom_type_script = "uid://r8md7aqnvibq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D/Bone/HurtBox" unique_id=1985212584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0056152344, 0.011352539, -0.00080418587)
+shape = SubResource("BoxShape3D_ljdv1")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Hands/Kuvalda1" unique_id=656562409]
 libraries/ = SubResource("AnimationLibrary_ir8wc")
+autoplay = &"Base"
 speed_scale = 1.5
 blend_times = [&"Hit", &"Base", 0.5]
-
-[node name="ChainGenerator" parent="." unique_id=1328849639 instance=ExtResource("12_vhflw")]
-top_level = true
-visible = false
-Material = ExtResource("13_eiw37")
 
 [node name="SmoothCollision" parent="." unique_id=305946787 node_paths=PackedStringArray("Parent") instance=ExtResource("15_cqswv")]
 visible = false
@@ -302,22 +319,6 @@ Knockback = 0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmoothCollision" unique_id=1131172225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0360043, 0)
 shape = SubResource("CylinderShape3D_ghdcn")
-
-[node name="PlayerUI" parent="." unique_id=46567609 instance=ExtResource("17_eb64r")]
-visible = false
-scale = Vector2(0.7702242, 0.7702242)
-
-[node name="Health" type="Node" parent="." unique_id=1362142520 node_paths=PackedStringArray("deleteNodeOnDeath", "pui")]
-script = ExtResource("18_6pvm4")
-health = 100.0
-deleteParentOnDeath = false
-deleteNodeOnDeath = []
-pui = NodePath("../PlayerUI")
-metadata/_custom_type_script = "uid://fuyembwq3tov"
-
-[node name="KuvaldaHitBox" type="Area3D" parent="." unique_id=454811838]
-transform = Transform3D(0.98966455, 0.111399695, 0.09030073, -0.013200495, -0.55625963, 0.8309037, 0.14279306, -0.82350796, -0.54903984, 0.005148668, 1.0421604, -0.57772505)
-visible = false
 
 [node name="PlayerHitBox" type="Area3D" parent="." unique_id=267153316 node_paths=PackedStringArray("Health")]
 visible = false
@@ -331,10 +332,12 @@ metadata/_custom_type_script = "uid://cikcuav44ogkv"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1236491, 0)
 shape = SubResource("BoxShape3D_6pvm4")
 
-[node name="OnPlayerLose" type="Node" parent="." unique_id=1352291441 node_paths=PackedStringArray("hp")]
-script = ExtResource("20_qndt7")
-hp = NodePath("../Health")
-game = "uid://r6uuyqpn0iwe"
+[node name="Health" type="Node" parent="." unique_id=1362142520 node_paths=PackedStringArray("deleteNodeOnDeath")]
+script = ExtResource("18_6pvm4")
+health = 100.0
+deleteParentOnDeath = false
+deleteNodeOnDeath = []
+metadata/_custom_type_script = "uid://fuyembwq3tov"
 
 [node name="Sounds" type="Node" parent="." unique_id=106134419]
 
@@ -349,5 +352,96 @@ stream = ExtResource("15_ghdcn")
 script = ExtResource("15_eb64r")
 player = NodePath("../../Head/Hands/Kuvalda1/AnimationPlayer")
 animationName = "SwingBehind"
+
+[node name="HurtSounds" type="Node" parent="Sounds" unique_id=1465202587 node_paths=PackedStringArray("audios", "health")]
+script = ExtResource("17_wty2p")
+audios = [NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8"), NodePath("9")]
+health = NodePath("../../Health")
+
+[node name="1" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=101654754]
+stream = ExtResource("18_3abr6")
+
+[node name="2" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=1997945988]
+stream = ExtResource("19_ljdv1")
+
+[node name="3" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=1305170265]
+stream = ExtResource("20_ff4qf")
+
+[node name="4" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=578626357]
+stream = ExtResource("21_872wd")
+
+[node name="5" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=411895991]
+stream = ExtResource("22_jbs27")
+
+[node name="6" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=603200761]
+stream = ExtResource("23_eggcg")
+
+[node name="7" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=1977887831]
+stream = ExtResource("24_8l768")
+
+[node name="8" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=1340917842]
+stream = ExtResource("25_al5gi")
+
+[node name="9" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=867734485]
+stream = ExtResource("26_qpjtw")
+
+[node name="OnPlayerLose" type="Node" parent="." unique_id=1352291441 node_paths=PackedStringArray("hp")]
+script = ExtResource("20_qndt7")
+hp = NodePath("../Health")
+game = "uid://r6uuyqpn0iwe"
+
+[node name="PlayerUI" parent="." unique_id=46567609 instance=ExtResource("17_eb64r")]
+visible = false
+scale = Vector2(0.7702242, 0.7702242)
+
+[node name="Control" type="Control" parent="." unique_id=1426209868]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=632073105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 800
+theme_override_constants/margin_top = 977
+theme_override_constants/margin_right = 800
+theme_override_constants/margin_bottom = 61
+metadata/_edit_use_anchors_ = true
+
+[node name="HpBar" type="ProgressBar" parent="Control/MarginContainer" unique_id=258442517 node_paths=PackedStringArray("health")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ghdcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eb64r")
+value = 100.0
+show_percentage = false
+script = ExtResource("17_lj4m2")
+health = NodePath("../../../Health")
+
+[node name="HurtVignette" type="Sprite2D" parent="Control" unique_id=1717900520 node_paths=PackedStringArray("health")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(960, 540)
+texture = ExtResource("18_qndt7")
+script = ExtResource("19_hkdd6")
+health = NodePath("../../Health")
+
+[node name="Timings" type="Node" parent="." unique_id=1697776339]
+
+[node name="HitTargetStun" type="Timer" parent="Timings" unique_id=1612567626]
+wait_time = 0.3
+
+[node name="Label" type="Label" parent="." unique_id=927945973]
+offset_left = 711.0
+offset_top = 521.0
+offset_right = 1009.0
+offset_bottom = 648.0
 
 [connection signal="animation_finished" from="Head/Hands/Kuvalda1/AnimationPlayer" to="Head/Hands/Kuvalda1/KuvaldaController" method="animationPlayerFinished"]

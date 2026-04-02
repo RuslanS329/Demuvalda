@@ -12,7 +12,7 @@ public partial class Hurt : State
     }
     public void timeout()
     {
-        //st.ChangeState(bite);
+        st.ChangeState(bite.StateName);
     }
     
 }

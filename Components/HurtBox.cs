@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class HurtBox : Area3D
 {
-    [Export] AnimationPlayer anim;
+    //[Export] AnimationPlayer anim;
     [Export] float damage;
     [Signal] public delegate void hitEventHandler();
     [Signal] public delegate void destroyEventHandler(string _name);
@@ -40,18 +40,18 @@ public partial class HurtBox : Area3D
                             hb.Hit(damage);
                             EmitSignal(SignalName.hit);
                             hurt = false;
-                            if (anim != null)
-                            {
-                                if (anim.CurrentAnimation == "LeftBaked")
-                                {
-                                    hb.Side("HitLeft");
-                                }
-                                if (anim.CurrentAnimation == "RightBaked")
-                                {
-                                    hb.Side("HitRight");
-                                }
+                            //if (anim != null)
+                            //{
+                            //    if (anim.CurrentAnimation == "LeftBaked")
+                            //    {
+                            //        hb.Side("HitLeft");
+                            //    }
+                            //    if (anim.CurrentAnimation == "RightBaked")
+                            //    {
+                            //        hb.Side("HitRight");
+                            //    }
 
-                            }
+                            //}
                         }
                     }
                 }
@@ -78,18 +78,18 @@ public partial class HurtBox : Area3D
                 hb.Hit(damage);
                 EmitSignal(SignalName.hit);
                 hurt = false;
-                if (anim != null)
-                {
-                    if (anim.CurrentAnimation == "LeftBaked")
-                    {
-                        hb.Side("HitLeft");
-                    }
-                    if(anim.CurrentAnimation == "RightBaked")
-                    {
-                        hb.Side("HitRight");
-                    }
+                //if (anim != null)
+                //{
+                //    if (anim.CurrentAnimation == "LeftBaked")
+                //    {
+                //        hb.Side("HitLeft");
+                //    }
+                //    if(anim.CurrentAnimation == "RightBaked")
+                //    {
+                //        hb.Side("HitRight");
+                //    }
 
-                }
+                //}
             }
         }
 

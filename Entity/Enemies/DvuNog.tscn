@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bdoi38st2t1v8"]
+[gd_scene format=3 uid="uid://bdoi38st2t1v8"]
 
 [ext_resource type="PackedScene" uid="uid://cd4nbp2v2aiwt" path="res://Assets/Enemy/Demon1.glb" id="1_qngxm"]
 [ext_resource type="Script" uid="uid://cky3jxl7qj3m2" path="res://Entity/Enemies/Falling.cs" id="2_jhoal"]
@@ -51,10 +51,10 @@ FloorRayCast = NodePath("../FloorRayCast")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0024095, 0)
 target_position = Vector3(0, -2.855, 0)
 
-[node name="Demon1" parent="." unique_id=1542273224 instance=ExtResource("1_qngxm")]
+[node name="Demon1" parent="." unique_id=178019889 instance=ExtResource("1_qngxm")]
 transform = Transform3D(-0.0015009493, 0, 0.9999989, 0, 1, 0, -0.9999989, 0, -0.0015009493, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Demon1/Demon" index="0"]
+[node name="Skeleton3D" parent="Demon1/Demon" parent_id_path=PackedInt32Array(178019889, 962701641) index="0" unique_id=491023642]
 bones/0/position = Vector3(-1.0620565, 0.9525454, 1.06047146e-07)
 bones/0/rotation = Quaternion(3.3245378e-08, 1.0816295e-08, 0.023018124, 0.99973506)
 bones/1/rotation = Quaternion(0.06976911, 0.041720808, -0.5412939, 0.83689463)
@@ -137,7 +137,7 @@ metadata/_custom_type_script = "uid://cikcuav44ogkv"
 transform = Transform3D(0.041063588, 0.00055952393, 0.9991674, 0.54052615, 0.84102046, -0.022685489, -0.84032357, 0.54100144, 0.03423266, -0.07854743, 1.0291635, -1.2674634)
 shape = SubResource("BoxShape3D_vvj5l")
 
-[node name="AnimationPlayer" parent="Demon1" index="1" node_paths=PackedStringArray("boxes")]
+[node name="AnimationPlayer" parent="Demon1" index="1" unique_id=870574101 node_paths=PackedStringArray("boxes")]
 autoplay = &"Idle"
 script = ExtResource("4_vvj5l")
 boxes = [NodePath("../Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon/Skeleton3D/ColHead/HitBox"), NodePath("../Demon/Skeleton3D/MouthCol/HitBox")]
@@ -186,31 +186,21 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31669033, 1.1407242, -0.08078012)
 shape = SubResource("BoxShape3D_wt2ss")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1974429473 node_paths=PackedStringArray("debugl", "HitBox", "HurtState", "States", "InitialState", "st")]
+[node name="Dvunog" type="Node" parent="." unique_id=1974429473 node_paths=PackedStringArray("debugl", "HitBox", "HurtState", "InitialState")]
 script = ExtResource("6_wxqw1")
 debugl = NodePath("../Label")
 HitBox = [NodePath("../Demon1/Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/ColHead/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/MouthCol/HitBox")]
 HurtState = NodePath("Hurt")
-States = {
-"Bite": NodePath("Bite"),
-"Hurt": NodePath("Hurt"),
-"Jump": NodePath("Jump"),
-"Run": NodePath("Run"),
-"RunBack": NodePath("RunBack"),
-"WaitPlayer": NodePath("WaitPlayer")
-}
-InitialState = NodePath("WaitPlayer")
-st = NodePath(".")
+InitialState = NodePath("Run")
 
-[node name="WaitPlayer" type="Node" parent="StateMachine" unique_id=276167556 node_paths=PackedStringArray("area", "anim", "RunState", "st")]
+[node name="WaitPlayer" type="Node" parent="Dvunog" unique_id=276167556 node_paths=PackedStringArray("area", "anim", "RunState")]
 script = ExtResource("8_p16x1")
 area = NodePath("../../Detect")
 anim = NodePath("../../Demon1/AnimationPlayer")
 RunState = NodePath("../Run")
 StateName = "WaitPlayer"
-st = NodePath("..")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=20417631 node_paths=PackedStringArray("BiteState", "body", "anim", "AttackArea", "st")]
+[node name="Run" type="Node" parent="Dvunog" unique_id=20417631 node_paths=PackedStringArray("BiteState", "body", "anim", "AttackArea")]
 script = ExtResource("10_wxqw1")
 BiteState = NodePath("../Bite")
 speed = 5.0
@@ -218,10 +208,9 @@ body = NodePath("../..")
 anim = NodePath("../../Demon1/AnimationPlayer")
 AttackArea = NodePath("../../AttackZone")
 StateName = "Run"
-st = NodePath("..")
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="Bite" type="Node" parent="StateMachine" unique_id=720486925 node_paths=PackedStringArray("anim", "RunState", "RunBack", "JumpState", "hurtBox", "st")]
+[node name="Bite" type="Node" parent="Dvunog" unique_id=720486925 node_paths=PackedStringArray("anim", "RunState", "RunBack", "JumpState", "hurtBox")]
 script = ExtResource("10_4ygb5")
 anim = NodePath("../../Demon1/AnimationPlayer")
 RunState = NodePath("../Run")
@@ -229,10 +218,9 @@ RunBack = NodePath("../RunBack")
 JumpState = NodePath("../Jump")
 hurtBox = NodePath("../../Demon1/Demon/Skeleton3D/MouthCol/HurtBox")
 StateName = "Bite"
-st = NodePath("..")
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="RunBack" type="Node" parent="StateMachine" unique_id=463894374 node_paths=PackedStringArray("body", "anim", "BiteState", "RunState", "st")]
+[node name="RunBack" type="Node" parent="Dvunog" unique_id=463894374 node_paths=PackedStringArray("body", "anim", "BiteState", "RunState")]
 script = ExtResource("11_4ygb5")
 speed = 8.0
 body = NodePath("../..")
@@ -240,22 +228,21 @@ anim = NodePath("../../Demon1/AnimationPlayer")
 BiteState = NodePath("../Bite")
 RunState = NodePath(".")
 StateName = "RunBack"
-st = NodePath("..")
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=623860417 node_paths=PackedStringArray("body", "anim", "fall", "RunState", "st")]
+[node name="Jump" type="Node" parent="Dvunog" unique_id=623860417 node_paths=PackedStringArray("body", "anim", "fall", "RunState")]
 script = ExtResource("11_wfi3g")
 body = NodePath("../..")
 anim = NodePath("../../Demon1/AnimationPlayer")
 fall = NodePath("../../Falling")
 RunState = NodePath("../Run")
 StateName = "Jump"
-st = NodePath("..")
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="Hurt" type="Node" parent="StateMachine" unique_id=389078137 node_paths=PackedStringArray("st")]
+[node name="Hurt" type="Node" parent="Dvunog" unique_id=389078137 node_paths=PackedStringArray("bite", "anim")]
 script = ExtResource("12_wfi3g")
-st = NodePath("..")
+bite = NodePath("../Bite")
+anim = NodePath("../../Demon1/AnimationPlayer")
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
 [node name="Label" type="Label" parent="." unique_id=1888408405]

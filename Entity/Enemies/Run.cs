@@ -47,11 +47,9 @@ public partial class Run : State
     }
     public void bodyEntered(Node body)
     {
-        if(body is Player)
-        {
-            
-            //st.ChangeState(BiteState);
-
+        if(body is Player) {
+        
+            st.ChangeState("Bite");
         }
     }
 }

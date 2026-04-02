@@ -14,20 +14,12 @@ public partial class DvuNogSM : StateMachine
         {
             box.hit += hit;
         }
-        //foreach (State entry in statesArray)
-        //{
-        //    if (entry != null && !string.IsNullOrEmpty(entry.StateName))
-        //    {
-        //        states[entry.StateName] = entry;
-        //        GD.Print($"Loaded state: {entry.StateName} -> {entry}");
-        //    }
-        //}
-        CurrentState = InitialState;
+        
         init();
     }
     public void hit()
     {
-        //ChangeState(HurtState);
+        ChangeState(HurtState.StateName);
     }
 
 
