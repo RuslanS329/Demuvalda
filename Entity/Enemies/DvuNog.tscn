@@ -37,7 +37,7 @@ radius = 1.3583984
 size = Vector3(4.4055023, 1.213974, 2.0968628)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=151249137]
-collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=11901370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3470154, 0)
@@ -45,6 +45,7 @@ shape = SubResource("CylinderShape3D_wt2ss")
 
 [node name="Falling" type="Node" parent="." unique_id=437526956 node_paths=PackedStringArray("FloorRayCast")]
 script = ExtResource("2_jhoal")
+speed = 0.0
 FloorRayCast = NodePath("../FloorRayCast")
 
 [node name="FloorRayCast" type="RayCast3D" parent="." unique_id=464076628]
@@ -146,7 +147,7 @@ boxes = [NodePath("../Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon/Skeleto
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3971148, 0, -0.2647435)
 visible = false
 Parent = NodePath("..")
-Knockback = 4.0
+Knockback = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmoothCollision" unique_id=1322624151]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3372686, 1.0126953, 0)
@@ -165,6 +166,8 @@ hp = NodePath("../Health")
 
 [node name="Detect" type="Area3D" parent="." unique_id=1352881060]
 transform = Transform3D(-0.0062831044, 0, 0.9999804, 0, 1, 0, -0.9999804, 0, -0.0062831044, 0, 0, 0)
+collision_layer = 513
+collision_mask = 513
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Detect" unique_id=60202624]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3782835, 1.183846, -0.28355098)
@@ -186,12 +189,11 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31669033, 1.1407242, -0.08078012)
 shape = SubResource("BoxShape3D_wt2ss")
 
-[node name="Dvunog" type="Node" parent="." unique_id=1974429473 node_paths=PackedStringArray("debugl", "HitBox", "HurtState", "InitialState")]
+[node name="Dvunog" type="Node" parent="." unique_id=1974429473 node_paths=PackedStringArray("debugl", "HurtState", "InitialState")]
 script = ExtResource("6_wxqw1")
 debugl = NodePath("../Label")
-HitBox = [NodePath("../Demon1/Demon/Skeleton3D/Body/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/ColHead/HitBox"), NodePath("../Demon1/Demon/Skeleton3D/MouthCol/HitBox")]
 HurtState = NodePath("Hurt")
-InitialState = NodePath("Run")
+InitialState = NodePath("WaitPlayer")
 
 [node name="WaitPlayer" type="Node" parent="Dvunog" unique_id=276167556 node_paths=PackedStringArray("area", "anim", "RunState")]
 script = ExtResource("8_p16x1")
@@ -210,12 +212,11 @@ AttackArea = NodePath("../../AttackZone")
 StateName = "Run"
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="Bite" type="Node" parent="Dvunog" unique_id=720486925 node_paths=PackedStringArray("anim", "RunState", "RunBack", "JumpState", "hurtBox")]
+[node name="Bite" type="Node" parent="Dvunog" unique_id=720486925 node_paths=PackedStringArray("anim", "RunState", "hurtBox")]
 script = ExtResource("10_4ygb5")
+damage = 20.0
 anim = NodePath("../../Demon1/AnimationPlayer")
 RunState = NodePath("../Run")
-RunBack = NodePath("../RunBack")
-JumpState = NodePath("../Jump")
 hurtBox = NodePath("../../Demon1/Demon/Skeleton3D/MouthCol/HurtBox")
 StateName = "Bite"
 metadata/_custom_type_script = "uid://pyc5m2get24s"

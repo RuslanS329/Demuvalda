@@ -144,6 +144,7 @@ inspect={
 
 [layer_names]
 
+3d_physics/layer_3="Hitbox"
 3d_physics/layer_4="SmoothCollision"
 3d_physics/layer_10="Player"
 

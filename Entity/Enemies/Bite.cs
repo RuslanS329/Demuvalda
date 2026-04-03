@@ -7,8 +7,6 @@ public partial class Bite : State
     [Export] float random_damage = 10f;
     [Export] AnimationPlayer anim;
     [Export] Run RunState;
-    [Export] State RunBack;
-    [Export] State JumpState;
     [Export] HurtBox hurtBox;
     bool full_bite = false;
     bool rotate = true;
@@ -49,12 +47,11 @@ public partial class Bite : State
         if(name == "Bite" && full_bite)
         {
             full_bite = false;
-            double chance;
             
             
-            chance = new Random().NextDouble();
+            
            
-            //st.ChangeState(RunState);
+            st.ChangeState("Run");
             hurtBox.hurt = false;
             hurtBox.ignoreList.Clear();
             

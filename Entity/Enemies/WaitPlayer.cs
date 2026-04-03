@@ -7,6 +7,7 @@ public partial class WaitPlayer : State
     [Export] AnimationPlayer anim;
     bool detected = false;
     [Export] State RunState;
+    [Export] string detectedAnim = "Detected";
 
     public override void _Ready()
     {
@@ -31,7 +32,7 @@ public partial class WaitPlayer : State
         {
             if (!detected)
             {
-                anim.Play("Detected");
+                anim.Play(detectedAnim);
                 anim.AnimationFinished += Finished;
                 detected = true;
             }
@@ -41,9 +42,9 @@ public partial class WaitPlayer : State
     }
     public void Finished(StringName name)
     {
-        if (name == "Detected")
+        if (name == detectedAnim)
         {
-            //st.ChangeState(RunState);
+            st.ChangeState("Run");
         }
     }
 }

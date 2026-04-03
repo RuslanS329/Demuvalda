@@ -1,6 +1,6 @@
 shader_type spatial;
 uniform float roughness;
-uniform vec3 albedo;
+uniform vec3 albedo : source_color;
 uniform sampler2D noise;
 uniform sampler2D noise2;
 uniform float speed1;

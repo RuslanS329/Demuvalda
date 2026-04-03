@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://g5sl16j744of" path="res://Entity/Player/KuvaldaController2.cs" id="6_eiw37"]
 [ext_resource type="Material" uid="uid://dt0c6cvqohd3r" path="res://Assets/Player/Kuvalda/Kuvalda.tres" id="6_eo8dx"]
 [ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://Components/HurtBox.cs" id="7_3abr6"]
+[ext_resource type="Script" uid="uid://cu1j2a246ti12" path="res://Entity/Player/BloodParticleSpawner.cs" id="8_wty2p"]
+[ext_resource type="PackedScene" uid="uid://dltnkvaerm3ji" path="res://Entity/Particles/PTC_Blood.tscn" id="9_wty2p"]
 [ext_resource type="AudioStream" uid="uid://dxabj4v85qt6y" path="res://Assets/Player/Sounds/Hit.wav" id="14_cqswv"]
 [ext_resource type="PackedScene" uid="uid://chf2n10crjcus" path="res://Components/SmoothCollision.tscn" id="15_cqswv"]
 [ext_resource type="Script" uid="uid://bbpj7mtmdff8k" path="res://Entity/Player/SoundOnAnimation.cs" id="15_eb64r"]
@@ -22,13 +24,25 @@
 [ext_resource type="Script" uid="uid://ddgh5bon62kl3" path="res://Entity/Player/HurtVignette.cs" id="19_hkdd6"]
 [ext_resource type="AudioStream" uid="uid://cl151sofrcfrt" path="res://Assets/Player/PlayerHurtSounds/2.wav" id="19_ljdv1"]
 [ext_resource type="AudioStream" uid="uid://u6e87gm52lre" path="res://Assets/Player/PlayerHurtSounds/3.wav" id="20_ff4qf"]
-[ext_resource type="Script" uid="uid://404wdbiydknu" path="res://Entity/Player/OnPlayerLose.cs" id="20_qndt7"]
 [ext_resource type="AudioStream" uid="uid://snwx2r4btcbr" path="res://Assets/Player/PlayerHurtSounds/4.wav" id="21_872wd"]
 [ext_resource type="AudioStream" uid="uid://bnf0717t7hou1" path="res://Assets/Player/PlayerHurtSounds/5.wav" id="22_jbs27"]
 [ext_resource type="AudioStream" uid="uid://bijv3y3eqlqsb" path="res://Assets/Player/PlayerHurtSounds/6.wav" id="23_eggcg"]
 [ext_resource type="AudioStream" uid="uid://bcoyj6y8v86j8" path="res://Assets/Player/PlayerHurtSounds/7.wav" id="24_8l768"]
 [ext_resource type="AudioStream" uid="uid://1x7cgtrn7pb5" path="res://Assets/Player/PlayerHurtSounds/8.wav" id="25_al5gi"]
 [ext_resource type="AudioStream" uid="uid://dsefjebvkmm0q" path="res://Assets/Player/PlayerHurtSounds/9.wav" id="26_qpjtw"]
+[ext_resource type="Script" uid="uid://obf5u84ik88r" path="res://Entity/Player/HitSounds.cs" id="27_rfo2f"]
+[ext_resource type="AudioStream" uid="uid://bs2vox8fqkor" path="res://Assets/Player/HitSounds/hit1.wav" id="28_t5df3"]
+[ext_resource type="AudioStream" uid="uid://chjo887mm1cxf" path="res://Assets/Player/HitSounds/hit2.wav" id="29_usauf"]
+[ext_resource type="AudioStream" uid="uid://bfe41p0h80b2c" path="res://Assets/Player/HitSounds/hit3.wav" id="30_84diu"]
+[ext_resource type="AudioStream" uid="uid://b7to0cjd4n4fm" path="res://Assets/Player/HitSounds/hit4.wav" id="31_uwy14"]
+[ext_resource type="AudioStream" uid="uid://dciyvga71n5dc" path="res://Assets/Player/HitSounds/hit5.wav" id="32_8qh8j"]
+[ext_resource type="AudioStream" uid="uid://7i3g6re6vrp2" path="res://Assets/Player/HitSounds/hit6.wav" id="33_p0koi"]
+[ext_resource type="AudioStream" uid="uid://bfivdo8ngp8xe" path="res://Assets/Player/HitSounds/hit7.wav" id="34_d7xnt"]
+[ext_resource type="AudioStream" uid="uid://dghm4inbtv45g" path="res://Assets/Player/HitSounds/hit8.wav" id="35_eqfol"]
+[ext_resource type="AudioStream" uid="uid://cwb6rjdml5iyr" path="res://Assets/Player/HitSounds/hit9.wav" id="36_arvxc"]
+[ext_resource type="AudioStream" uid="uid://c5q7kqe6mlxdm" path="res://Assets/Player/HitSounds/hit10.wav" id="37_j1j43"]
+[ext_resource type="AudioStream" uid="uid://di0084tednm3a" path="res://Assets/Player/HitSounds/hit11.wav" id="38_88acc"]
+[ext_resource type="AudioStream" uid="uid://clgq54l53hst4" path="res://Assets/Player/HitSounds/hit12.wav" id="39_hwgvk"]
 
 [sub_resource type="Curve" id="Curve_x1f5c"]
 _limits = [0.0, 0.7, 0.0, 0.5]
@@ -260,6 +274,7 @@ noise = SubResource("FastNoiseLite_3abr6")
 [node name="CameraShaker" type="Node3D" parent="Head/Camera3D" unique_id=1284727009 node_paths=PackedStringArray("Target")]
 script = ExtResource("3_ljdv1")
 Target = NodePath("..")
+AmplitudeOverride = 2.0
 
 [node name="Hands" type="Node3D" parent="Head" unique_id=1359850497 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_viyt1")
@@ -282,12 +297,12 @@ bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06973537, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0.005148668, -0.43059316, -0.57772505)
-bones/0/rotation = Quaternion(-0.8796255, -0.027909376, -0.06624802, 0.47020343)
+bones/0/position = Vector3(0.03776753, -1.108491, -0.65148425)
+bones/0/rotation = Quaternion(-0.07359328, 0.028016232, -0.1529742, 0.9850878)
 bones/0/scale = Vector3(1, 1, 1)
 
 [node name="Bone" type="BoneAttachment3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D" unique_id=1613902999]
-transform = Transform3D(0.98966455, 0.111399695, 0.09030073, -0.013200495, -0.55625963, 0.8309037, 0.14279306, -0.82350796, -0.54903984, 0.005148668, -0.43059316, -0.57772505)
+transform = Transform3D(0.95162797, 0.29726246, 0.07771264, -0.30550966, 0.9423658, 0.13642018, -0.03268115, -0.15356322, 0.98759824, 0.03776753, -1.108491, -0.65148425)
 bone_name = "Bone"
 bone_idx = 0
 
@@ -295,8 +310,16 @@ bone_idx = 0
 transform = Transform3D(0.9999999, 1.1175871e-08, 5.2041714e-17, -1.1175871e-08, 0.9999999, 9.313226e-09, 5.204171e-17, -9.313226e-09, 0.99999994, -5.5879354e-09, 0.06973535, 4.8894435e-09)
 mesh = SubResource("ArrayMesh_wnwx4")
 
+[node name="BloodParticleSpawner" type="Node3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D/Bone" unique_id=1986798197 node_paths=PackedStringArray("hbox")]
+transform = Transform3D(1, -4.656613e-10, 3.7252903e-09, 4.656613e-10, 1, 1.4901161e-08, 0, 0, 1, 7.450581e-09, 1.0082352, 0)
+script = ExtResource("8_wty2p")
+ptc = ExtResource("9_wty2p")
+hbox = NodePath("../HurtBox")
+
 [node name="HurtBox" type="Area3D" parent="Head/Hands/Kuvalda1/Kuvald/Skeleton3D/Bone" unique_id=351094021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0082353, 0)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("7_3abr6")
 damage = 60.0
 metadata/_custom_type_script = "uid://r8md7aqnvibq"
@@ -385,10 +408,46 @@ stream = ExtResource("25_al5gi")
 [node name="9" type="AudioStreamPlayer" parent="Sounds/HurtSounds" unique_id=867734485]
 stream = ExtResource("26_qpjtw")
 
-[node name="OnPlayerLose" type="Node" parent="." unique_id=1352291441 node_paths=PackedStringArray("hp")]
-script = ExtResource("20_qndt7")
-hp = NodePath("../Health")
-game = "uid://r6uuyqpn0iwe"
+[node name="HitSounds" type="Node" parent="Sounds" unique_id=2140379554 node_paths=PackedStringArray("audios", "hbox")]
+script = ExtResource("27_rfo2f")
+audios = [NodePath("Hit1"), NodePath("Hit2"), NodePath("Hit3"), NodePath("Hit4"), NodePath("Hit5"), NodePath("Hit6"), NodePath("Hit7"), NodePath("Hit8"), NodePath("Hit9"), NodePath("Hit10"), NodePath("Hit11"), NodePath("Hit12")]
+hbox = NodePath("../../Head/Hands/Kuvalda1/Kuvald/Skeleton3D/Bone/HurtBox")
+
+[node name="Hit1" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1083207061]
+stream = ExtResource("28_t5df3")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=588991357]
+stream = ExtResource("29_usauf")
+
+[node name="Hit3" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=835772163]
+stream = ExtResource("30_84diu")
+
+[node name="Hit4" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1688601736]
+stream = ExtResource("31_uwy14")
+
+[node name="Hit5" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=2072151499]
+stream = ExtResource("32_8qh8j")
+
+[node name="Hit6" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=625152599]
+stream = ExtResource("33_p0koi")
+
+[node name="Hit7" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=871152211]
+stream = ExtResource("34_d7xnt")
+
+[node name="Hit8" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=355980274]
+stream = ExtResource("35_eqfol")
+
+[node name="Hit9" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1512133146]
+stream = ExtResource("36_arvxc")
+
+[node name="Hit10" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1751856482]
+stream = ExtResource("37_j1j43")
+
+[node name="Hit11" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=758090716]
+stream = ExtResource("38_88acc")
+
+[node name="Hit12" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1466343760]
+stream = ExtResource("39_hwgvk")
 
 [node name="PlayerUI" parent="." unique_id=46567609 instance=ExtResource("17_eb64r")]
 visible = false
@@ -433,12 +492,19 @@ texture = ExtResource("18_qndt7")
 script = ExtResource("19_hkdd6")
 health = NodePath("../../Health")
 
+[node name="Line2D" type="Line2D" parent="Control" unique_id=561676150]
+visible = false
+points = PackedVector2Array(960, 540, 960, 536)
+width = 4.0
+
 [node name="Timings" type="Node" parent="." unique_id=1697776339]
 
 [node name="HitTargetStun" type="Timer" parent="Timings" unique_id=1612567626]
 wait_time = 0.3
+one_shot = true
 
 [node name="Label" type="Label" parent="." unique_id=927945973]
+visible = false
 offset_left = 711.0
 offset_top = 521.0
 offset_right = 1009.0

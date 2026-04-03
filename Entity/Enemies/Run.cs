@@ -9,6 +9,8 @@ public partial class Run : State
     [Export] Node3D body;
     [Export] AnimationPlayer anim;
     [Export] Area3D AttackArea;
+    [Export] string attackAnimName = "Bite";
+    private bool playerIsInReach = false;
     public Player player;
     public override void _Ready()
     {
@@ -48,8 +50,16 @@ public partial class Run : State
     public void bodyEntered(Node body)
     {
         if(body is Player) {
-        
-            st.ChangeState("Bite");
+            playerIsInReach = true;
+            st.ChangeState(attackAnimName);
+        }
+    }
+    public void bodyExited(Node body)
+    {
+        if (body is Player)
+        {
+            playerIsInReach = false;
+            st.ChangeState("Run");
         }
     }
 }

@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cimttdmfn7ufo"]
+
+[ext_resource type="Shader" uid="uid://dnmo5f1faequu" path="res://Shaders/Blood.gdshader" id="1_n58gl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gqbix"]
+noise_type = 3
+frequency = 0.0266
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oysan"]
+noise = SubResource("FastNoiseLite_gqbix")
+seamless = true
+as_normal_map = true
+bump_strength = 13.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oysan"]
+noise_type = 3
+frequency = 0.0118
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sb2pt"]
+noise = SubResource("FastNoiseLite_oysan")
+seamless = true
+as_normal_map = true
+bump_strength = 8.9
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_n58gl")
+shader_parameter/roughness = -0.01
+shader_parameter/albedo = Color(0.41568628, 0, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_oysan")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_sb2pt")
+shader_parameter/speed1 = 0.01
+shader_parameter/speed2 = 0.02
+shader_parameter/dir1 = Vector2(1, 1)
+shader_parameter/dir2 = Vector2(-0.5, -1)

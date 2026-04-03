@@ -8,10 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://if4pp3lv3r3b" path="res://Entity/Enemies/NoseMonster.tscn" id="7_me02i"]
 [ext_resource type="Material" uid="uid://gfbdfr0p8x70" path="res://Assets/Levels/Castle/BricksTriplanar.tres" id="7_ufqv5"]
 [ext_resource type="PackedScene" uid="uid://bdoi38st2t1v8" path="res://Entity/Enemies/DvuNog.tscn" id="8_me02i"]
+[ext_resource type="PackedScene" uid="uid://bu5kvjx3c6fu" path="res://Entity/Particles/PTC_Dust.tscn" id="9_8m1h3"]
+[ext_resource type="Material" uid="uid://cimttdmfn7ufo" path="res://Assets/Materials/BloodMaterial.tres" id="10_g8qms"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vhwf4"]
-sky_top_color = Color(0.5011628, 0.42968717, 0.4015234, 1)
-sky_horizon_color = Color(0.6884401, 0.6628212, 0.64678025, 1)
+sky_top_color = Color(0.3285638, 0.06891288, 0.12716904, 1)
+sky_horizon_color = Color(0.63444746, 0.2802953, 0.29558995, 1)
 ground_horizon_color = Color(0.6884401, 0.6628212, 0.64678025, 1)
 
 [sub_resource type="Sky" id="Sky_2bj4k"]
@@ -22,11 +24,23 @@ background_mode = 2
 sky = SubResource("Sky_2bj4k")
 tonemap_mode = 3
 ssao_enabled = true
+ssao_intensity = 5.16
 glow_enabled = true
 glow_normalized = true
 glow_strength = 2.0
 glow_bloom = 0.25
 glow_blend_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.287433, 0.11825394, 0.09108504, 1)
+fog_density = 0.0164
+fog_height = 0.57
+fog_height_density = 3.2611
+fog_depth_curve = 0.14865084
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0554
+volumetric_fog_albedo = Color(0.86022323, 0.10067318, 0.23747513, 1)
+volumetric_fog_ambient_inject = 0.26
+volumetric_fog_sky_affect = 0.809
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bj4k"]
 emission_enabled = true
@@ -44,11 +58,14 @@ size = Vector2(16, 16)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_me02i"]
 data = PackedVector3Array(8, 0, 8, -8, 0, 8, 8, 0, -8, -8, 0, 8, -8, 0, -8, 8, 0, -8)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_8m1h3"]
+
 [node name="Node3D" type="Node3D" unique_id=2017887179]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2132328115]
 transform = Transform3D(-0.73996747, 0.18874042, -0.6456201, -0.66704154, -0.08229329, 0.7404617, 0.08662486, 0.9785729, 0.18679203, 0, 0, -1.0626526)
 light_energy = 0.3
+light_indirect_energy = 0.5
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1679094304]
@@ -61,7 +78,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 11.60
 light_data = ExtResource("2_vhwf4")
 
 [node name="Player" parent="." unique_id=1133191554 instance=ExtResource("3_2bj4k")]
-transform = Transform3D(0.0017627776, 0, 0.99999845, 0, 1, 0, -0.99999845, 0, 0.0017627776, -14.85895, -9.536743e-07, -22.497694)
+transform = Transform3D(-0.997442, 0, -0.07148007, 0, 1, 0, 0.07148007, 0, -0.997442, -3.0146036, 2.3841858e-07, -10.008199)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2085971640]
 transform = Transform3D(1, 0, 0, 0, 0.28457636, 0.755922, 0, -0.32859346, 0.65466166, -5.569334, 0.4535091, -3.7947102)
@@ -225,14 +242,112 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.338917, 0)
 billboard = 1
 text = "1.75m"
 
-[node name="NoseMonster" parent="." unique_id=885342362 instance=ExtResource("7_me02i")]
+[node name="PTC" type="Node3D" parent="." unique_id=1019464804]
+
+[node name="Dust" parent="PTC" unique_id=1685380409 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, -2.304514, -4.7683716e-07, -9.353388)
+
+[node name="Dust2" parent="PTC" unique_id=951195860 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, -2.2805777, 1.0697861, 5.1792183)
+
+[node name="Dust3" parent="PTC" unique_id=915548088 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 0.1190207, 4.866974, 26.279686)
+
+[node name="Dust4" parent="PTC" unique_id=746742605 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 3.1447334, 12.916229, 42.687843)
+
+[node name="Dust5" parent="PTC" unique_id=1807915384 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 17.0949, 9.306564, 37.18098)
+
+[node name="Dust6" parent="PTC" unique_id=1317156737 instance=ExtResource("9_8m1h3")]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 12.048037, 12.91623, 63.200546)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2001918492]
+transform = Transform3D(15.142731, 0, 0, 0, 1, 0, 0, 0, 15.142731, 0, 0.16923118, 0)
+material_override = ExtResource("10_g8qms")
+mesh = SubResource("PlaneMesh_8m1h3")
+
+[node name="Monsters" type="Node3D" parent="." unique_id=1092138136]
+
+[node name="NoseMonster" parent="Monsters" unique_id=885342362 instance=ExtResource("7_me02i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.152153, 1.0146561, -23.84266)
 
-[node name="NoseMonster2" parent="." unique_id=34646150 instance=ExtResource("7_me02i")]
+[node name="NoseMonster2" parent="Monsters" unique_id=34646150 instance=ExtResource("7_me02i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.152153, 1.0146561, -25.669441)
 
-[node name="NoseMonster3" parent="." unique_id=862400474 instance=ExtResource("7_me02i")]
+[node name="NoseMonster3" parent="Monsters" unique_id=862400474 instance=ExtResource("7_me02i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.152153, 1.0146561, -27.312984)
 
-[node name="Enemy" parent="." unique_id=151249137 instance=ExtResource("8_me02i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.750126, 0.46448085, -25.613565)
+[node name="Enemy" parent="Monsters" unique_id=151249137 instance=ExtResource("8_me02i")]
+transform = Transform3D(-0.7015314, 0, -0.7126385, 0, 1, 0, 0.7126385, 0, -0.7015314, -16.750126, 0.46448085, -25.613565)
+
+[node name="NoseMonster4" parent="Monsters" unique_id=952768313 instance=ExtResource("7_me02i")]
+transform = Transform3D(0.33663514, 0, 0.9416352, 0, 1, 0, -0.9416352, 0, 0.33663514, 1.8253675, 1.0146565, -5.035595)
+
+[node name="NoseMonster8" parent="Monsters" unique_id=2121473228 instance=ExtResource("7_me02i")]
+transform = Transform3D(0.9260617, 0, -0.3773721, 0, 1, 0, 0.3773721, 0, 0.9260617, -2.4072676, 2.3868823, 12.979472)
+
+[node name="NoseMonster9" parent="Monsters" unique_id=920617812 instance=ExtResource("7_me02i")]
+transform = Transform3D(-0.23543052, 0, -0.97189116, 0, 1, 0, 0.97189116, 0, -0.23543052, -8.33348, 2.5813553, 11.048249)
+
+[node name="NoseMonster10" parent="Monsters" unique_id=1830839920 instance=ExtResource("7_me02i")]
+transform = Transform3D(0.9321407, 0, 0.3620963, 0, 1, 0, -0.3620963, 0, 0.9321407, -1.6997328, 5.88163, 34.68208)
+
+[node name="NoseMonster11" parent="Monsters" unique_id=445232565 instance=ExtResource("7_me02i")]
+transform = Transform3D(0.49457914, 0, 0.8691326, 0, 1, 0, -0.8691326, 0, 0.49457914, 6.7485394, 5.88163, 27.477789)
+
+[node name="Top" type="Node3D" parent="Monsters" unique_id=680791796]
+
+[node name="Enemy2" parent="Monsters/Top" unique_id=1406299930 instance=ExtResource("8_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.266853, 13.380712, 62.162693)
+
+[node name="Enemy" parent="Monsters/Top" unique_id=1213264726 instance=ExtResource("8_me02i")]
+transform = Transform3D(0.18501484, 0, 0.98273575, 0, 1, 0, -0.98273575, 0, 0.18501484, 13.3558, 13.3807125, 75.26389)
+
+[node name="Enemy3" parent="Monsters/Top" unique_id=1826279760 instance=ExtResource("8_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1270533, 13.380711, 80.5531)
+
+[node name="Enemy4" parent="Monsters/Top" unique_id=1388097452 instance=ExtResource("8_me02i")]
+transform = Transform3D(-0.023804009, 0, -0.99971664, 0, 1, 0, 0.99971664, 0, -0.023804009, -14.593895, 13.380711, 73.447716)
+
+[node name="Enemy5" parent="Monsters/Top" unique_id=1445902469 instance=ExtResource("8_me02i")]
+transform = Transform3D(-0.82134837, 0, -0.57042694, 0, 1, 0, 0.57042694, 0, -0.82134837, -11.703104, 13.380711, 53.361656)
+
+[node name="Enemy6" parent="Monsters/Top" unique_id=1650741972 instance=ExtResource("8_me02i")]
+transform = Transform3D(-0.7737296, 0, 0.63351595, 0, 1, 0, -0.63351595, 0, -0.7737296, 5.343128, 13.380712, 54.58249)
+
+[node name="NoseMonster" parent="Monsters/Top" unique_id=1474564113 instance=ExtResource("7_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.084545, 13.930886, 65.652664)
+
+[node name="NoseMonster2" parent="Monsters/Top" unique_id=2016123854 instance=ExtResource("7_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5399826, 13.930886, 71.43665)
+
+[node name="NoseMonster3" parent="Monsters/Top" unique_id=1261262472 instance=ExtResource("7_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.807554, 13.930886, 66.799805)
+
+[node name="NoseMonster4" parent="Monsters/Top" unique_id=1900683120 instance=ExtResource("7_me02i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.92181, 13.930888, 60.87442)
+
+[node name="Enemy7" parent="Monsters" unique_id=1372207475 instance=ExtResource("8_me02i")]
+transform = Transform3D(0.99921393, 0, 0.039643317, 0, 1, 0, -0.039643317, 0, 0.99921393, -2.5010543, 0.464482, 1.2786193)
+
+[node name="Enemy8" parent="Monsters" unique_id=1111289578 instance=ExtResource("8_me02i")]
+transform = Transform3D(0.99921393, 0, 0.039643317, 0, 1, 0, -0.039643317, 0, 0.99921393, -5.970791, 2.9081643, 7.2426558)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=475196233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.295312, 2.9104004, -5.949459)
+material_override = ExtResource("7_ufqv5")
+use_collision = true
+size = Vector3(1.7677002, 6.820801, 18.134033)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=911126271]
+transform = Transform3D(-0.022687301, 0, 0.99974275, 0, 1, 0, -0.99974275, 0, -0.022687301, 0.45841026, 2.9104009, -14.12684)
+material_override = ExtResource("7_ufqv5")
+use_collision = true
+size = Vector3(1.7677002, 6.820801, 24.180786)
+
+[node name="Enemy" parent="." unique_id=846159696 instance=ExtResource("8_me02i")]
+transform = Transform3D(0.8940057, 0, 0.4480556, 0, 1, 0, -0.4480556, 0, 0.8940057, 0.06442022, 5.331455, 27.063467)
+
+[node name="Enemy2" parent="." unique_id=708639210 instance=ExtResource("8_me02i")]
+transform = Transform3D(0.10426807, 0, 0.9945492, 0, 1, 0, -0.9945492, 0, 0.10426807, 17.356976, 9.771047, 29.089798)

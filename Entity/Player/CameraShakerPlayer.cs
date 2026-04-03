@@ -18,7 +18,7 @@ public partial class CameraShakerPlayer : Node
         NoiseShake ns = NoiseShake.CreateWithNoise(noise);
         shakeDirector.Shake(
              ns
-           .WithDuration(0.2f)
+           .WithDuration(0.4f)
            .WithEulersAmount(new Vector3(0.05f, 0, 0.03f)));
     }
 }

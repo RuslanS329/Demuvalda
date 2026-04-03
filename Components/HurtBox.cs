@@ -40,18 +40,6 @@ public partial class HurtBox : Area3D
                             hb.Hit(damage);
                             EmitSignal(SignalName.hit);
                             hurt = false;
-                            //if (anim != null)
-                            //{
-                            //    if (anim.CurrentAnimation == "LeftBaked")
-                            //    {
-                            //        hb.Side("HitLeft");
-                            //    }
-                            //    if (anim.CurrentAnimation == "RightBaked")
-                            //    {
-                            //        hb.Side("HitRight");
-                            //    }
-
-                            //}
                         }
                     }
                 }
@@ -69,7 +57,6 @@ public partial class HurtBox : Area3D
         {
             if (ignoreList.Contains(hb))
             {
-
             }
             else
             {
@@ -78,23 +65,8 @@ public partial class HurtBox : Area3D
                 hb.Hit(damage);
                 EmitSignal(SignalName.hit);
                 hurt = false;
-                //if (anim != null)
-                //{
-                //    if (anim.CurrentAnimation == "LeftBaked")
-                //    {
-                //        hb.Side("HitLeft");
-                //    }
-                //    if(anim.CurrentAnimation == "RightBaked")
-                //    {
-                //        hb.Side("HitRight");
-                //    }
-
-                //}
+                
             }
         }
-
-
-
-
     }
 }

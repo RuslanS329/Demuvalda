@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bu5kvjx3c6fu"]
+
+[ext_resource type="Texture2D" uid="uid://ckyiv0nisqnsb" path="res://Assets/Sprites/11.png" id="1_6i2ar"]
+
+[sub_resource type="Curve" id="Curve_oysan"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74038464, 0.6309678), -1.350593, -1.350593, 0, 0, Vector2(1, 0), -3.2925363, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sb2pt"]
+curve = SubResource("Curve_oysan")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t07s"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -0.5, 0)
+scale_curve = SubResource("CurveTexture_sb2pt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t07s"]
+transparency = 1
+albedo_texture = ExtResource("1_6i2ar")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_6qsgm"]
+material = SubResource("StandardMaterial3D_0t07s")
+size = Vector2(0.2, 0.2)
+
+[node name="Dust" type="GPUParticles3D" unique_id=1685380409]
+transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 0, 0, 0)
+amount = 1298
+process_material = SubResource("ParticleProcessMaterial_0t07s")
+draw_pass_1 = SubResource("QuadMesh_6qsgm")

@@ -1,29 +1,73 @@
 [gd_scene format=3 uid="uid://if4pp3lv3r3b"]
 
 [ext_resource type="PackedScene" uid="uid://dr78g382n12fa" path="res://Assets/Enemy/NoseMonster/NoseMonster.glb" id="1_0lfwc"]
+[ext_resource type="PackedScene" uid="uid://chf2n10crjcus" path="res://Components/SmoothCollision.tscn" id="1_5gdui"]
+[ext_resource type="Script" uid="uid://r8md7aqnvibq" path="res://Components/HurtBox.cs" id="2_fnt0h"]
 [ext_resource type="Script" uid="uid://fuyembwq3tov" path="res://Entity/Enemies/Health.cs" id="2_twh1s"]
 [ext_resource type="Script" uid="uid://cikcuav44ogkv" path="res://Components/HitBox.cs" id="3_3necw"]
+[ext_resource type="Script" uid="uid://ba38uddfwopvj" path="res://Components/PlayAnimationOnDeath.cs" id="4_7rnyl"]
+[ext_resource type="Script" uid="uid://djuntv60qt7qb" path="res://Entity/Enemies/DvuNogSM.cs" id="5_51uh2"]
+[ext_resource type="Script" uid="uid://b4hq0iq4222es" path="res://Entity/Enemies/WaitPlayer.cs" id="6_ldspr"]
+[ext_resource type="Script" uid="uid://bo0xy25sufihx" path="res://Entity/Enemies/Run.cs" id="7_p8lvp"]
+[ext_resource type="Script" uid="uid://bd4ogknjqloyf" path="res://Entity/Enemies/Bite.cs" id="8_pew63"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ldspr"]
+radius = 0.7138672
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3necw"]
 size = Vector3(1.324234, 2.376709, 1.6225586)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_51uh2"]
+radius = 0.7397461
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5gdui"]
+radius = 3.4125977
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0lfwc"]
 height = 2.1189575
 
 [node name="NoseMonster" type="CharacterBody3D" unique_id=885342362]
+collision_mask = 0
+
+[node name="SmoothCollision" parent="." unique_id=1325761253 node_paths=PackedStringArray("Parent") instance=ExtResource("1_5gdui")]
+Parent = NodePath("..")
+Knockback = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmoothCollision" unique_id=1825278793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39037585)
+shape = SubResource("CylinderShape3D_ldspr")
 
 [node name="NoseMonster" parent="." unique_id=1162515928 instance=ExtResource("1_0lfwc")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="NoseMonster/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1162515928, 295885988) index="4" unique_id=121112665]
+[node name="Skeleton3D" parent="NoseMonster/Armature" parent_id_path=PackedInt32Array(1162515928, 2037348282) index="0" unique_id=295885988]
+bones/1/rotation = Quaternion(1.9251998e-07, 8.651248e-08, 0.9211514, -0.3892045)
+bones/2/rotation = Quaternion(0.95845455, 4.9092027e-14, 2.2851316e-07, -0.2852453)
+bones/3/rotation = Quaternion(-0.28524545, 3.681828e-14, -6.800772e-08, 0.9584545)
+bones/4/rotation = Quaternion(-1.6940659e-21, -3.5527137e-15, 1.2705494e-21, 1)
+bones/5/rotation = Quaternion(0.9584546, -3.6117048e-14, 2.2851326e-07, 0.2852452)
+bones/6/rotation = Quaternion(0.2852453, 4.440513e-14, 6.8007715e-08, 0.95845455)
+bones/7/rotation = Quaternion(-1.6940659e-21, 0, 4.2351647e-22, 1)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="NoseMonster/Armature/Skeleton3D" index="4" unique_id=121112665]
 transform = Transform3D(1, 0, 2.3841855e-07, 0, 1, 0, -2.3841855e-07, 0, 1, 0, -0.29627082, 0)
 bone_name = "Root"
 bone_idx = 0
 use_external_skeleton = true
 external_skeleton = NodePath("..")
 
+[node name="HurtBox" type="Area3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D" unique_id=358494693]
+transform = Transform3D(1, 0, -2.3841855e-07, 0, 1, 0, 2.3841855e-07, 0, 1, 0, 0.29627082, 0)
+script = ExtResource("2_fnt0h")
+metadata/_custom_type_script = "uid://r8md7aqnvibq"
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HurtBox" unique_id=1199884516]
+polygon = PackedVector2Array(2.191899, 0.55109906, 2.1764915, 1.4062219, 0.7281754, 2.415421, 0.61261797, 0.6050257)
+
 [node name="HitBox" type="Area3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D" unique_id=277266619 node_paths=PackedStringArray("Health")]
 transform = Transform3D(1, 0, -2.3841855e-07, 0, 1, 0, 2.3841855e-07, 0, 1, 0, 0.29627082, 0)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("3_3necw")
 Health = NodePath("../../../../../Health")
 metadata/_custom_type_script = "uid://cikcuav44ogkv"
@@ -35,13 +79,77 @@ shape = SubResource("BoxShape3D_3necw")
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HitBox" unique_id=1032082979]
 polygon = PackedVector2Array(2.191899, 0.55109906, 2.1764915, 1.4062219, 0.7281754, 2.415421, 0.61261797, 0.6050257)
 
+[node name="AnimationPlayer" parent="NoseMonster" index="1" unique_id=325300780]
+autoplay = &"Idle"
+
+[node name="AttackArea" type="Area3D" parent="NoseMonster" unique_id=320233103]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NoseMonster/AttackArea" unique_id=616745889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1208894, 0, 0)
+shape = SubResource("CylinderShape3D_51uh2")
+
+[node name="DetectArea" type="Area3D" parent="NoseMonster" unique_id=1620643773]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NoseMonster/DetectArea" unique_id=1946139855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69366217, 0, -1.8674697e-08)
+shape = SubResource("CylinderShape3D_5gdui")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=489288176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07620239, 0)
 shape = SubResource("CapsuleShape3D_0lfwc")
 
 [node name="Health" type="Node" parent="." unique_id=1680524775 node_paths=PackedStringArray("deleteNodeOnDeath")]
 script = ExtResource("2_twh1s")
-deleteNodeOnDeath = [NodePath("..")]
+maxHealth = 200.0
+startHealth = 200.0
+deleteParentOnDeath = false
+deleteNodeOnDeath = [NodePath("../CollisionShape3D"), NodePath("../Dvunog")]
 metadata/_custom_type_script = "uid://fuyembwq3tov"
+
+[node name="PlayAnimationOnDeath" type="Node" parent="." unique_id=170288353 node_paths=PackedStringArray("hp", "player")]
+script = ExtResource("4_7rnyl")
+hp = NodePath("../Health")
+player = NodePath("../NoseMonster/AnimationPlayer")
+animationName = "Die"
+
+[node name="Dvunog" type="Node" parent="." unique_id=1340836080 node_paths=PackedStringArray("InitialState")]
+script = ExtResource("5_51uh2")
+InitialState = NodePath("WaitPlayer")
+
+[node name="WaitPlayer" type="Node" parent="Dvunog" unique_id=1614915578 node_paths=PackedStringArray("area", "anim", "RunState")]
+script = ExtResource("6_ldspr")
+area = NodePath("../../NoseMonster/DetectArea")
+anim = NodePath("../../NoseMonster/AnimationPlayer")
+RunState = NodePath("../Run")
+detectedAnim = "WakeUp"
+StateName = "WaitPlayer"
+
+[node name="Run" type="Node" parent="Dvunog" unique_id=2090809068 node_paths=PackedStringArray("BiteState", "body", "anim", "AttackArea")]
+script = ExtResource("7_p8lvp")
+BiteState = NodePath("../Bite")
+speed = 4.0
+body = NodePath("../..")
+anim = NodePath("../../NoseMonster/AnimationPlayer")
+AttackArea = NodePath("../../NoseMonster/AttackArea")
+attackAnimName = "Attack"
+StateName = "Run"
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Bite" type="Node" parent="Dvunog" unique_id=1055229395 node_paths=PackedStringArray("anim", "RunState", "hurtBox")]
+script = ExtResource("8_pew63")
+damage = 20.0
+anim = NodePath("../../NoseMonster/AnimationPlayer")
+RunState = NodePath("../Run")
+hurtBox = NodePath("../../NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HurtBox")
+StateName = "Bite"
+metadata/_custom_type_script = "uid://pyc5m2get24s"
 
 [editable path="NoseMonster"]

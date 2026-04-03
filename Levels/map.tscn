@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://r6uuyqpn0iwe"]
+[gd_scene format=4 uid="uid://r6uuyqpn0iwe"]
 
 [ext_resource type="Shader" uid="uid://cqwoh44kdqrgq" path="res://Shaders/LUT.gdshader" id="2_oysan"]
 [ext_resource type="PackedScene" uid="uid://drqhunhfhxwip" path="res://Entity/Player/player.tscn" id="2_wijl4"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://b8gdapuunsp8k" path="res://Scripts/Tools/MouseManager.gd" id="5_urblq"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="7_gqbix"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="8_oysan"]
-[ext_resource type="Shader" uid="uid://dnmo5f1faequu" path="res://Shaders/Blood.gdshader" id="9_gqbix"]
+[ext_resource type="Material" uid="uid://cimttdmfn7ufo" path="res://Assets/Materials/BloodMaterial.tres" id="9_f4we8"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="9_sb2pt"]
+[ext_resource type="PackedScene" uid="uid://bu5kvjx3c6fu" path="res://Entity/Particles/PTC_Dust.tscn" id="10_f4we8"]
 [ext_resource type="PackedScene" uid="uid://bdoi38st2t1v8" path="res://Entity/Enemies/DvuNog.tscn" id="10_oysan"]
 [ext_resource type="Texture2D" uid="uid://ckyiv0nisqnsb" path="res://Assets/Sprites/11.png" id="10_sb2pt"]
 
@@ -160,39 +161,6 @@ buffer = PackedFloat32Array(0.01477243, 0, 0.99989086, 273.14243, 0, 1, 0, 43.98
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_05x41"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_gqbix"]
-noise_type = 3
-frequency = 0.0266
-fractal_type = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oysan"]
-noise = SubResource("FastNoiseLite_gqbix")
-seamless = true
-as_normal_map = true
-bump_strength = 13.0
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oysan"]
-noise_type = 3
-frequency = 0.0118
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sb2pt"]
-noise = SubResource("FastNoiseLite_oysan")
-seamless = true
-as_normal_map = true
-bump_strength = 8.9
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sb2pt"]
-render_priority = 0
-shader = ExtResource("9_gqbix")
-shader_parameter/roughness = -0.01
-shader_parameter/albedo = Vector3(0, 0, 0)
-shader_parameter/noise = SubResource("NoiseTexture2D_oysan")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_sb2pt")
-shader_parameter/speed1 = 0.01
-shader_parameter/speed2 = 0.02
-shader_parameter/dir1 = Vector2(1, 1)
-shader_parameter/dir2 = Vector2(-0.5, -1)
-
 [sub_resource type="Curve" id="Curve_oysan"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74038464, 0.6309678), -1.350593, -1.350593, 0, 0, Vector2(1, 0), -3.2925363, 0.0, 0, 0]
 point_count = 3
@@ -339,12 +307,12 @@ metadata/SimpleGrassTextured = "2.0.5"
 [node name="Blood" type="MeshInstance3D" parent="." unique_id=782463562]
 transform = Transform3D(10.911687, 0, 0, 0, 10.911687, 0, 0, 0, 10.911687, 117.19856, 40.017315, 23.931326)
 mesh = SubResource("PlaneMesh_05x41")
-surface_material_override/0 = SubResource("ShaderMaterial_sb2pt")
+surface_material_override/0 = ExtResource("9_f4we8")
 
 [node name="Blood2" type="MeshInstance3D" parent="." unique_id=1059587605]
 transform = Transform3D(32.456676, 0, 0, 0, 32.456676, 0, 0, 0, 32.456676, 292.616, 42.831768, -47.05329)
 mesh = SubResource("PlaneMesh_05x41")
-surface_material_override/0 = SubResource("ShaderMaterial_sb2pt")
+surface_material_override/0 = ExtResource("9_f4we8")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=52100068]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 117.0935, 60.00841, 24.038372)
@@ -352,11 +320,8 @@ light_color = Color(0.8286435, 0.70825964, 0.6063851, 1)
 light_energy = 72.085
 spot_range = 39.256916
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=313178534]
-transform = Transform3D(27.60921, 0.35943335, 0, -2.4422011, 4.063413, 0, 0, 0, 13.5380335, 265.00763, 48.962517, -44.456688)
-amount = 1298
-process_material = SubResource("ParticleProcessMaterial_0t07s")
-draw_pass_1 = SubResource("QuadMesh_6qsgm")
+[node name="Dust" parent="." unique_id=1685380409 instance=ExtResource("10_f4we8")]
+transform = Transform3D(27.60921, 0.35943338, 0, -2.4422011, 4.0634127, 0, 0, 0, 13.5380335, 265.00763, 48.962517, -44.456688)
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=264052360]
 transform = Transform3D(5.434614, 0.13542905, -9.758591, -1.2193494, 3.8834386, 0, 12.668301, 0.31569055, 4.1863685, 199.22586, 52.6686, -38.86687)
