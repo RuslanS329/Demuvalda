@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://brjox1geoywnh"]
+
+[ext_resource type="FontFile" uid="uid://dtj1lomxnqynj" path="res://Assets/Fonts/Avangarda.ttf" id="1_xxred"]
+
+[resource]
+Button/constants/outline_size = 9
+Button/font_sizes/font_size = 80
+Button/fonts/font = ExtResource("1_xxred")

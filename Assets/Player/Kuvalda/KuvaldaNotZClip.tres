@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b6o3nhbu1mbsb"]
+
+[ext_resource type="Texture2D" uid="uid://ucrgavucpx7i" path="res://Assets/Player/Kuvalda/Kuvalda1_Kuvalda_ALB.jpg" id="1_6c0rp"]
+[ext_resource type="Texture2D" uid="uid://eduok7mrahde" path="res://Assets/Player/Kuvalda/Kuvalda1_Kuvalda_MET-Kuvalda_RGH.png" id="2_owax5"]
+[ext_resource type="Texture2D" uid="uid://6froux6nm08j" path="res://Assets/Player/Kuvalda/Kuvalda1_Kuvalda_NRM.png" id="3_w6tvr"]
+
+[resource]
+resource_name = "Kuvalda"
+cull_mode = 2
+albedo_texture = ExtResource("1_6c0rp")
+metallic = 1.0
+metallic_texture = ExtResource("2_owax5")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_owax5")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_w6tvr")
+z_clip_scale = 0.8
