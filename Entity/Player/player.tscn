@@ -493,7 +493,6 @@ script = ExtResource("19_hkdd6")
 health = NodePath("../../Health")
 
 [node name="Line2D" type="Line2D" parent="Control" unique_id=561676150]
-visible = false
 points = PackedVector2Array(960, 540, 960, 536)
 width = 4.0
 
