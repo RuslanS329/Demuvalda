@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://crsaxe1ciqudh" path="res://Assets/Player/Kuvalda/Kuvalda1.glb" id="7_0o2qv"]
 [ext_resource type="Material" uid="uid://b6o3nhbu1mbsb" path="res://Assets/Player/Kuvalda/KuvaldaNotZClip.tres" id="8_qybon"]
 [ext_resource type="Theme" uid="uid://brjox1geoywnh" path="res://Assets/Themes/DefaultTheme.tres" id="9_8yjug"]
+[ext_resource type="Script" uid="uid://csao0pildkjwg" path="res://Levels/MainMenu/StartGameButton.cs" id="11_8qbe0"]
 [ext_resource type="Script" uid="uid://bcdint1kk0033" path="res://Scripts/ButtonTextChangeOnHover.cs" id="11_ngv2m"]
 [ext_resource type="Script" uid="uid://i068ep4b8nln" path="res://Levels/MainMenu/MainMenuSFX.cs" id="12_3gsno"]
 [ext_resource type="AudioStream" uid="uid://c0pmtm7af1yth" path="res://Assets/SFX/UI/ButtonHoverSound.wav" id="12_xvwom"]
@@ -517,6 +518,8 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_vtoco")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5fuv4")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_l6at8")
 text = "Play"
+script = ExtResource("11_8qbe0")
+game = "uid://c448yacox6f0f"
 
 [node name="ButtonTextChangeOnHover" type="Node" parent="AspectRatioContainer/Control/MarginContainer/VBoxContainer/Button" unique_id=1312671336]
 script = ExtResource("11_ngv2m")

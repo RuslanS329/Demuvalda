@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://c448yacox6f0f"]
+
+[ext_resource type="PackedScene" uid="uid://cee1v66yy1t5q" path="res://Assets/Levels/CastlePrison/Prison.glb" id="1_sjaet"]
+[ext_resource type="Material" uid="uid://bayuomsbyd760" path="res://Assets/Levels/Castle/Bricks.tres" id="2_fw0d1"]
+[ext_resource type="LightmapGIData" uid="uid://c3mbbev2po2f0" path="res://Bakes/prison.lmbake" id="2_pfym4"]
+[ext_resource type="Material" uid="uid://clrodd0iv43ld" path="res://Assets/Levels/Castle/FloorTriplanarDark.tres" id="2_x0bas"]
+[ext_resource type="Material" uid="uid://biij1qmpjm0ds" path="res://Assets/Levels/Castle/BricksTriplanarDark.tres" id="3_fco3c"]
+[ext_resource type="Material" uid="uid://w8mue0fojwmi" path="res://Assets/Map/Bricks2.tres" id="4_fw0d1"]
+[ext_resource type="Material" uid="uid://gfbdfr0p8x70" path="res://Assets/Levels/Castle/BricksTriplanar.tres" id="5_fco3c"]
+[ext_resource type="Material" uid="uid://yvtuw7kssx72" path="res://Assets/Materials/Metal/Metal.tres" id="5_fw0d1"]
+[ext_resource type="PackedScene" uid="uid://drqhunhfhxwip" path="res://Entity/Player/player.tscn" id="7_m83jt"]
+[ext_resource type="Material" uid="uid://cimttdmfn7ufo" path="res://Assets/Materials/BloodMaterial.tres" id="8_fco3c"]
+[ext_resource type="Material" uid="uid://dgvl0jq2ke0tx" path="res://Assets/Map/Wood.tres" id="10_m83jt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_boykq"]
+ground_horizon_color = Color(0.6884401, 0.6628212, 0.64678025, 1)
+
+[sub_resource type="Sky" id="Sky_13s1e"]
+sky_material = SubResource("ProceduralSkyMaterial_boykq")
+
+[sub_resource type="Environment" id="Environment_fw0d1"]
+background_mode = 2
+sky = SubResource("Sky_13s1e")
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+ssao_intensity = 5.16
+glow_enabled = true
+glow_normalized = true
+glow_strength = 2.0
+glow_bloom = 0.25
+glow_blend_mode = 2
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.02
+fog_height = 0.6
+fog_height_density = 0.17
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_ambient_inject = 0.26
+volumetric_fog_sky_affect = 0.809
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6d571"]
+
+[node name="Prison" type="Node3D" unique_id=377661741]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=800643458]
+environment = SubResource("Environment_fw0d1")
+
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1965884393]
+interior = true
+light_data = ExtResource("2_pfym4")
+
+[node name="Prison" parent="." unique_id=1785054602 instance=ExtResource("1_sjaet")]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Plane-col" parent="Prison" index="0" unique_id=1634738215]
+material_override = ExtResource("2_fw0d1")
+
+[node name="Circle" parent="Prison" index="1" unique_id=142537475]
+material_override = ExtResource("3_fco3c")
+
+[node name="Cylinder" parent="Prison" index="2" unique_id=1893799036]
+visible = false
+
+[node name="StaticBody3D" parent="Prison/Cylinder" index="0" unique_id=488767289]
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" parent="Prison/Cylinder/StaticBody3D" index="0" unique_id=1305088592]
+visible = false
+disabled = true
+
+[node name="Floor Mesh" parent="Prison" index="3" unique_id=813121568]
+material_override = ExtResource("2_x0bas")
+
+[node name="Cylinder_001" parent="Prison" index="4" unique_id=951798015]
+material_override = ExtResource("4_fw0d1")
+
+[node name="Circle_001" parent="Prison" index="5" unique_id=989410412]
+material_override = ExtResource("5_fco3c")
+
+[node name="Circle_002" parent="Prison" index="6" unique_id=723147453]
+material_override = ExtResource("3_fco3c")
+
+[node name="Door" parent="Prison" index="9" unique_id=741784540]
+material_override = ExtResource("5_fw0d1")
+
+[node name="DoorFrame_001" parent="Prison" index="10" unique_id=625090777]
+material_override = ExtResource("5_fw0d1")
+
+[node name="Plane_003" parent="Prison" index="11" unique_id=242256614]
+material_override = ExtResource("5_fco3c")
+
+[node name="Cylinder_004" parent="Prison" index="12" unique_id=1669071719]
+visible = false
+
+[node name="StaticBody3D" parent="Prison/Cylinder_004" index="0" unique_id=1816618639]
+visible = false
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" parent="Prison/Cylinder_004/StaticBody3D" index="0" unique_id=16415640]
+visible = false
+disabled = true
+
+[node name="Cylinder_005" parent="Prison" index="13" unique_id=496037631]
+material_override = ExtResource("5_fco3c")
+
+[node name="Plane_001" parent="Prison" index="15" unique_id=147485343]
+material_override = ExtResource("5_fco3c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1943869914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7353551, 1.4549103, -1.8485715)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=639107526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7353551, 1.4549103, -8.985477)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="." unique_id=2044744679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3543677, 8.335726, 7.634844)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 3.0
+shadow_enabled = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="." unique_id=2082269243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3543677, 5.264103, 7.634844)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 3.0
+shadow_enabled = true
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="." unique_id=764090376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15974, 3.0808072, 7.634844)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 3.0
+shadow_enabled = true
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="." unique_id=1680365058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.418644, 5.6762304, 7.101023)
+light_color = Color(0.95729417, 0.81193566, 0.6428803, 1)
+light_indirect_energy = 3.0
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1133191554 instance=ExtResource("7_m83jt")]
+transform = Transform3D(-0.051882893, 0, -0.9986532, 0, 1, 0, 0.9986532, 0, -0.051882893, -0.25984025, 0.02547741, -10.913477)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=911807619]
+transform = Transform3D(18.66584, 0, 0, 0, 1, 0, 0, 0, 13.171483, 3.1540143, -0.00036485493, -9.587187)
+material_override = ExtResource("8_fco3c")
+mesh = SubResource("PlaneMesh_6d571")
+
+[node name="Bed" type="CSGBox3D" parent="." unique_id=381615344]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.49253917, 0.5669811, -1.0317259)
+material_override = ExtResource("10_m83jt")
+use_collision = true
+size = Vector3(0.9, 0.12, 1.6)
+
+[node name="Bed2" type="CSGBox3D" parent="." unique_id=1113553985]
+transform = Transform3D(-4.371139e-08, 0, 1, -0.5, 0.8660254, -2.1855694e-08, -0.8660254, -0.5, -3.7855173e-08, -0.49253917, 0.2980374, -1.0317259)
+material_override = ExtResource("10_m83jt")
+size = Vector3(0.9, 0.12, 1.6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=431516195]
+
+[editable path="Prison"]

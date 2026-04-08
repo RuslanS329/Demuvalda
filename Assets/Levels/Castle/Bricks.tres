@@ -10,6 +10,7 @@ cull_mode = 2
 albedo_texture = ExtResource("1_m57nm")
 metallic_texture = ExtResource("2_lkibm")
 metallic_texture_channel = 2
+roughness = 0.39
 roughness_texture = ExtResource("2_lkibm")
 roughness_texture_channel = 1
 normal_enabled = true
