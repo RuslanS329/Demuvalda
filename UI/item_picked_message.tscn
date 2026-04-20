@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://0h22cmaqjc5m"]
+
+[ext_resource type="Script" uid="uid://db62nvib1jtvp" path="res://UI/ItemPickedMessage.cs" id="1_qw3hd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qts7o"]
+bg_color = Color(0.27, 0.27, 0.27, 0.13333334)
+border_width_left = 5
+border_width_right = 5
+expand_margin_left = 25.0
+expand_margin_right = 25.0
+
+[node name="ItemPickedMessage" type="Control" unique_id=549485108 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_qw3hd")
+label = NodePath("MarginContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1631188163]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 66
+theme_override_constants/margin_bottom = 328
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1971487995]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_qts7o")
+text = "Bandage"

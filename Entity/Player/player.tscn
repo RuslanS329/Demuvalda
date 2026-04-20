@@ -46,6 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://c58rsecfbtfi" path="res://UI/slot.tscn" id="44_t5df3"]
 [ext_resource type="Script" uid="uid://crat4fd0p3arb" path="res://Entity/Player/Inventory/Inventory.cs" id="44_usauf"]
 [ext_resource type="Resource" uid="uid://bn8sd3sp6x6i6" path="res://Entity/Items/BandAid.tres" id="46_84diu"]
+[ext_resource type="Script" uid="uid://4wnpv8i8ng2k" path="res://Entity/Player/MessageBoxSpawner.cs" id="47_uwy14"]
+[ext_resource type="PackedScene" uid="uid://0h22cmaqjc5m" path="res://UI/item_picked_message.tscn" id="48_8qh8j"]
 
 [sub_resource type="Curve" id="Curve_x1f5c"]
 _limits = [0.0, 0.7, 0.0, 0.5]
@@ -233,11 +235,12 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb64r"]
 bg_color = Color(0.6, 0.08999999, 0.08999999, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=1133191554 node_paths=PackedStringArray("cam", "headBob") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1133191554 node_paths=PackedStringArray("cam", "headBob", "inventory") groups=["Player"]]
 collision_layer = 512
 script = ExtResource("1_mc1dd")
 cam = NodePath("Head/Camera3D")
 headBob = NodePath("Head")
+inventory = NodePath("Control/Inventory")
 mouse_sensitivity = 0.06
 gravity = -40.0
 holdJumpCurve = SubResource("Curve_x1f5c")
@@ -502,7 +505,7 @@ health = NodePath("../../Health")
 points = PackedVector2Array(960, 540, 960, 536)
 width = 4.0
 
-[node name="Inventory" type="MarginContainer" parent="Control" unique_id=301112567 node_paths=PackedStringArray("slots", "playerHealth")]
+[node name="Inventory" type="MarginContainer" parent="Control" unique_id=301112567 node_paths=PackedStringArray("slots", "playerHealth") groups=["Inventory"]]
 process_mode = 3
 visible = false
 custom_minimum_size = Vector2(800, 600)
@@ -553,6 +556,7 @@ item = ExtResource("46_84diu")
 
 [node name="Slot4" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=208612788 instance=ExtResource("44_t5df3")]
 layout_mode = 2
+item = null
 
 [node name="Slot5" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1863750323 instance=ExtResource("44_t5df3")]
 layout_mode = 2
@@ -582,5 +586,11 @@ offset_left = 711.0
 offset_top = 521.0
 offset_right = 1009.0
 offset_bottom = 648.0
+
+[node name="MessageBoxSpawner" type="Node" parent="." unique_id=1765934311 node_paths=PackedStringArray("inventory")]
+process_mode = 3
+script = ExtResource("47_uwy14")
+box = ExtResource("48_8qh8j")
+inventory = NodePath("../Control/Inventory")
 
 [connection signal="animation_finished" from="Head/Hands/Kuvalda1/AnimationPlayer" to="Head/Hands/Kuvalda1/KuvaldaController" method="animationPlayerFinished"]

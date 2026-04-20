@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cn21ba77xy3p2"]
+
+[ext_resource type="ArrayMesh" uid="uid://dj38cxrqsyyu8" path="res://Assets/PickupAble/Bandage_Cylinder_001.res" id="1_ev56s"]
+[ext_resource type="Script" uid="uid://dqdab7bgdi23c" path="res://Entity/PickupItem.cs" id="1_m1vf4"]
+[ext_resource type="Resource" uid="uid://bn8sd3sp6x6i6" path="res://Entity/Items/BandAid.tres" id="2_td6kf"]
+[ext_resource type="Material" uid="uid://dbm0a4har4ojx" path="res://Assets/Materials/Marks/MarkGreen.tres" id="3_ny3pj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m1vf4"]
+radius = 0.74140817
+
+[sub_resource type="QuadMesh" id="QuadMesh_ny3pj"]
+
+[node name="PickupItem" type="Node3D" unique_id=2057021231 node_paths=PackedStringArray("area")]
+script = ExtResource("1_m1vf4")
+item = ExtResource("2_td6kf")
+area = NodePath("Area3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1338818548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17479742, 0)
+mesh = ExtResource("1_ev56s")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1176766939]
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1591106005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31619513, 0)
+shape = SubResource("SphereShape3D_m1vf4")
+
+[node name="Mark" type="MeshInstance3D" parent="." unique_id=901018794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9547082, 0)
+material_override = ExtResource("3_ny3pj")
+material_overlay = ExtResource("3_ny3pj")
+mesh = SubResource("QuadMesh_ny3pj")

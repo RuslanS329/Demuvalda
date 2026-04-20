@@ -6,7 +6,7 @@ public partial class Player : CharacterBody3D
 {
     [Export] Node3D cam;
     [Export] HeadBob headBob;
-
+    [Export] public Inventory inventory;
 
     [Export] float mouse_sensitivity = 0.08f;
 

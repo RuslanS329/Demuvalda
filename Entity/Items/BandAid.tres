@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://86gqij33hhv5"
 [resource]
 script = ExtResource("1_56oqm")
 image = ExtResource("1_4w21q")
-name = "BandAid"
+name = "Bandage"
 Actions = Array[Resource]([SubResource("Resource_dlq0e")])
 audio = ExtResource("2_dlq0e")
 usedAudio = ExtResource("5_y86kn")

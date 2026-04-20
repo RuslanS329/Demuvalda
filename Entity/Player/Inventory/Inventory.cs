@@ -4,8 +4,9 @@ using System;
 public partial class Inventory : MarginContainer
 {
     public bool isOpen = false;
-    [Export] Slot[] slots;
+    [Export] public Slot[] slots;
     [Export] Health playerHealth;
+    [Signal] public delegate void ItemAddedEventHandler(Item item);
     public override void _Ready()
     {
         foreach(var slot in slots)
@@ -24,6 +25,21 @@ public partial class Inventory : MarginContainer
 
             
         }
+    }
+    public bool addItem(Item item)
+    {
+        GD.Print("AddItem");
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if (!slots[i].occupied)
+            {
+                slots[i].addItem(item);
+                EmitSignal(SignalName.ItemAdded, item);
+                return true;
+            }
+        }
+        return false;
+        
     }
     public void close()
     {

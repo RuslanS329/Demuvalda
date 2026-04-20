@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cx128dxb8ax8l"]
+
+[ext_resource type="Texture2D" uid="uid://b11slaena0kk7" path="res://Assets/Sprites/MarkAlpha.png" id="1_7bxh0"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_7bxh0")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+billboard_mode = 2
+grow_amount = -1.939
+distance_fade_mode = 1
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 0.0
