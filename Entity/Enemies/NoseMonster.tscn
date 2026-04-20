@@ -7,9 +7,14 @@
 [ext_resource type="Script" uid="uid://cikcuav44ogkv" path="res://Components/HitBox.cs" id="3_3necw"]
 [ext_resource type="Script" uid="uid://ba38uddfwopvj" path="res://Components/PlayAnimationOnDeath.cs" id="4_7rnyl"]
 [ext_resource type="Script" uid="uid://djuntv60qt7qb" path="res://Entity/Enemies/DvuNogSM.cs" id="5_51uh2"]
-[ext_resource type="Script" uid="uid://b4hq0iq4222es" path="res://Entity/Enemies/WaitPlayer.cs" id="6_ldspr"]
-[ext_resource type="Script" uid="uid://bo0xy25sufihx" path="res://Entity/Enemies/Run.cs" id="7_p8lvp"]
-[ext_resource type="Script" uid="uid://bd4ogknjqloyf" path="res://Entity/Enemies/Bite.cs" id="8_pew63"]
+[ext_resource type="Script" uid="uid://nxr65xdmkxfd" path="res://Entity/Enemies/WaitBeforeAttack.cs" id="9_5gdui"]
+[ext_resource type="Script" uid="uid://4j7nuq88mbs5" path="res://Entity/Enemies/Attack.cs" id="10_51uh2"]
+[ext_resource type="Script" uid="uid://3gtnp4d6moh2" path="res://Entity/Enemies/Monster.cs" id="11_51uh2"]
+[ext_resource type="Script" uid="uid://dnufx3buwbdv4" path="res://Entity/Enemies/RunToPlayer.cs" id="11_ldspr"]
+[ext_resource type="Script" uid="uid://77dyxlx6lwmn" path="res://Entity/Enemies/BackUp.cs" id="11_p8lvp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0lfwc"]
+height = 2.1189575
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ldspr"]
 radius = 0.7138672
@@ -21,13 +26,15 @@ size = Vector3(1.324234, 2.376709, 1.6225586)
 radius = 0.7397461
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5gdui"]
-radius = 3.4125977
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0lfwc"]
-height = 2.1189575
+radius = 3.5566406
 
 [node name="NoseMonster" type="CharacterBody3D" unique_id=885342362]
-collision_mask = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91151536, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=489288176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07620239, 0)
+shape = SubResource("CapsuleShape3D_0lfwc")
 
 [node name="SmoothCollision" parent="." unique_id=1325761253 node_paths=PackedStringArray("Parent") instance=ExtResource("1_5gdui")]
 Parent = NodePath("..")
@@ -80,7 +87,7 @@ shape = SubResource("BoxShape3D_3necw")
 polygon = PackedVector2Array(2.191899, 0.55109906, 2.1764915, 1.4062219, 0.7281754, 2.415421, 0.61261797, 0.6050257)
 
 [node name="AnimationPlayer" parent="NoseMonster" index="1" unique_id=325300780]
-autoplay = &"Idle"
+autoplay = &"WakeUp"
 
 [node name="AttackArea" type="Area3D" parent="NoseMonster" unique_id=320233103]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -102,16 +109,12 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69366217, 0, -1.8674697e-08)
 shape = SubResource("CylinderShape3D_5gdui")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=489288176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07620239, 0)
-shape = SubResource("CapsuleShape3D_0lfwc")
-
 [node name="Health" type="Node" parent="." unique_id=1680524775 node_paths=PackedStringArray("deleteNodeOnDeath")]
 script = ExtResource("2_twh1s")
 maxHealth = 200.0
 startHealth = 200.0
 deleteParentOnDeath = false
-deleteNodeOnDeath = [NodePath("../CollisionShape3D"), NodePath("../Dvunog")]
+deleteNodeOnDeath = [NodePath("../CollisionShape3D"), NodePath("../Dvunog"), NodePath("../NoseMonster/Armature/Skeleton3D/Cube_001"), NodePath("../NoseMonster/Armature/Skeleton3D/Teeth"), NodePath("../NoseMonster/Armature/Skeleton3D/Teeth_001")]
 metadata/_custom_type_script = "uid://fuyembwq3tov"
 
 [node name="PlayAnimationOnDeath" type="Node" parent="." unique_id=170288353 node_paths=PackedStringArray("hp", "player")]
@@ -120,36 +123,55 @@ hp = NodePath("../Health")
 player = NodePath("../NoseMonster/AnimationPlayer")
 animationName = "Die"
 
-[node name="Dvunog" type="Node" parent="." unique_id=1340836080 node_paths=PackedStringArray("InitialState")]
+[node name="Dvunog" type="Node" parent="." unique_id=1340836080 node_paths=PackedStringArray("CurrentState")]
 script = ExtResource("5_51uh2")
-InitialState = NodePath("WaitPlayer")
+debugStateChanges = true
+CurrentState = NodePath("RunToPlayer")
 
-[node name="WaitPlayer" type="Node" parent="Dvunog" unique_id=1614915578 node_paths=PackedStringArray("area", "anim", "RunState")]
-script = ExtResource("6_ldspr")
-area = NodePath("../../NoseMonster/DetectArea")
-anim = NodePath("../../NoseMonster/AnimationPlayer")
-RunState = NodePath("../Run")
-detectedAnim = "WakeUp"
-StateName = "WaitPlayer"
-
-[node name="Run" type="Node" parent="Dvunog" unique_id=2090809068 node_paths=PackedStringArray("BiteState", "body", "anim", "AttackArea")]
-script = ExtResource("7_p8lvp")
-BiteState = NodePath("../Bite")
+[node name="RunToPlayer" type="Node" parent="Dvunog" unique_id=984150855 node_paths=PackedStringArray("monster", "animationPlayer")]
+script = ExtResource("11_ldspr")
+monster = NodePath("../../Monster")
 speed = 4.0
-body = NodePath("../..")
-anim = NodePath("../../NoseMonster/AnimationPlayer")
-AttackArea = NodePath("../../NoseMonster/AttackArea")
-attackAnimName = "Attack"
-StateName = "Run"
+animationPlayer = NodePath("../../NoseMonster/AnimationPlayer")
+runAnimation = "Run"
+StateName = "RunToPlayer"
 metadata/_custom_type_script = "uid://pyc5m2get24s"
 
-[node name="Bite" type="Node" parent="Dvunog" unique_id=1055229395 node_paths=PackedStringArray("anim", "RunState", "hurtBox")]
-script = ExtResource("8_pew63")
-damage = 20.0
-anim = NodePath("../../NoseMonster/AnimationPlayer")
-RunState = NodePath("../Run")
-hurtBox = NodePath("../../NoseMonster/Armature/Skeleton3D/BoneAttachment3D/HurtBox")
-StateName = "Bite"
+[node name="WaitBeforeAttack" type="Node" parent="Dvunog" unique_id=1652185635 node_paths=PackedStringArray("animationPlayer", "monster")]
+script = ExtResource("9_5gdui")
+maxTime = 4.0
+minTime = 4.0
+animationPlayer = NodePath("../../NoseMonster/AnimationPlayer")
+waitAnimation = "Idle"
+monster = NodePath("../../Monster")
+StateName = "WaitBeforeAttack"
 metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Attack" type="Node" parent="Dvunog" unique_id=1552083540 node_paths=PackedStringArray("animationPlayer", "monster")]
+script = ExtResource("10_51uh2")
+animationPlayer = NodePath("../../NoseMonster/AnimationPlayer")
+attackAnimation = "Attack"
+monster = NodePath("../../Monster")
+speed = 24.0
+StateName = "Attack"
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="BackUp" type="Node" parent="Dvunog" unique_id=265733310 node_paths=PackedStringArray("monster", "animationPlayer")]
+script = ExtResource("11_p8lvp")
+monster = NodePath("../../Monster")
+animationPlayer = NodePath("../../NoseMonster/AnimationPlayer")
+runAnimation = "Run"
+backUpTime = 0.6
+StateName = "BackUp"
+metadata/_custom_type_script = "uid://pyc5m2get24s"
+
+[node name="Monster" type="Node" parent="." unique_id=1389773980 node_paths=PackedStringArray("body", "navAgent")]
+script = ExtResource("11_51uh2")
+body = NodePath("..")
+navAgent = NodePath("../NavigationAgent3D")
+debugNavigation = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1696966721]
+debug_use_custom = true
 
 [editable path="NoseMonster"]

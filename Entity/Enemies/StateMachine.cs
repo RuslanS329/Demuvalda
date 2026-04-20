@@ -9,10 +9,10 @@ public partial class StateMachine : State
     Godot.Collections.Dictionary<string, State> States = new();
 
     //State that sets at initialization
-    [Export] public State InitialState;
-
+    //[Export] public State InitialState;
+    [Export] bool debugStateChanges = false;
     //Current State
-    public State CurrentState;
+    [Export] public State CurrentState;
 
 
     public override void _Ready()
@@ -42,7 +42,7 @@ public partial class StateMachine : State
     public virtual void init()
     {
         getChildrenStates();
-        CurrentState = InitialState;
+        //CurrentState = InitialState;
         CurrentState.Enter();
     }
     public override void _PhysicsProcess(double delta)
@@ -53,7 +53,8 @@ public partial class StateMachine : State
     }
     public void ChangeState(string stateName)
     {
-        GD.Print("ChangeState : ", States[stateName]);
+        if (debugStateChanges) 
+        GD.Print("ChangeState : ", stateName);
 
         if (CurrentState != null) CurrentState.Exit();
         CurrentState = States[stateName];

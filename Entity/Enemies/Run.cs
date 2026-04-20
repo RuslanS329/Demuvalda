@@ -40,7 +40,7 @@ public partial class Run : State
     {
         Vector3 direction = (-body.GlobalPosition + player.GlobalPosition).Normalized();
         Vector3 r = body.GlobalRotation;
-        r.Y = Mathf.LerpAngle(r.Y, Mathf.Atan2(-direction.X, -direction.Z), (float)delta * 4);
+        r.Y = Mathf.LerpAngle(r.Y, Mathf.Atan2(-direction.X, -direction.Z), (float)delta * 8);
         body.GlobalRotation = r;
     }
     public override void Exit()

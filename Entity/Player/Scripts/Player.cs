@@ -6,7 +6,7 @@ public partial class Player : CharacterBody3D
 {
     [Export] Node3D cam;
     [Export] HeadBob headBob;
-    [Export] KuvaldaController kv;
+
 
     [Export] float mouse_sensitivity = 0.08f;
 
@@ -78,7 +78,7 @@ public partial class Player : CharacterBody3D
         CalculateBob(inputDir);
 
 
-        boost = boost.MoveToward(Vector3.Zero,(float)delta * 25f);
+        boost = boost.MoveToward(Vector3.Zero, (float)delta * 25f);
 
         Velocity = velocity;
         MoveAndSlide();
@@ -200,13 +200,17 @@ public partial class Player : CharacterBody3D
     }
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion mot)
-        {
-            this.RotateY(Mathf.DegToRad(-mot.Relative.X * mouse_sensitivity));
-            cam.RotateX(Mathf.DegToRad(-mot.Relative.Y * mouse_sensitivity));
-            cam.RotationDegrees = new Godot.Vector3(Mathf.Clamp(cam.RotationDegrees.X, -90, 90), cam.RotationDegrees.Y, cam.RotationDegrees.Z);
+        if (Input.MouseMode == Input.MouseModeEnum.Captured)
+            if (@event is InputEventMouseMotion mot)
+            {
+                this.RotateY(Mathf.DegToRad(-mot.Relative.X * mouse_sensitivity));
+               // cam.RotateX(Mathf.DegToRad(-mot.Relative.Y * mouse_sensitivity));
+                // cam.RotationDegrees = new Vector3(Mathf.Clamp(cam.RotationDegrees.X, -80f, 80f), cam.RotationDegrees.Y, cam.RotationDegrees.Z);
+                float rot_x = cam.Rotation.X + (Mathf.DegToRad(-mot.Relative.Y * mouse_sensitivity));
+                rot_x = Mathf.Clamp(rot_x, Mathf.DegToRad(-80), Mathf.DegToRad(80));
+                cam.Rotation = new(rot_x, 0, 0);
 
-        }
+            }
     }
 
 

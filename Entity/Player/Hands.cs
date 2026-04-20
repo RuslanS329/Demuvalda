@@ -7,7 +7,7 @@ public partial class Hands : Node3D
     [Export] float max_rotation = .5f;
     float rot_x;
     
-    public override void _PhysicsProcess(double delta)
+    public override void _Process(double delta)
     {
         
         Vector3 rot = RotationDegrees;

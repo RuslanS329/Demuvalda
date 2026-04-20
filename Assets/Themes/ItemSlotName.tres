@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://4ki0q1l477fh"]
+
+[ext_resource type="FontFile" uid="uid://dtj1lomxnqynj" path="res://Assets/Fonts/Avangarda.ttf" id="1_7ohl3"]
+
+[resource]
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_7ohl3")
+Label/constants/outline_size = 3
+Label/font_sizes/font_size = 29
+Label/fonts/font = ExtResource("1_7ohl3")

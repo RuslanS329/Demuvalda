@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="KeyItem" format=3 uid="uid://da6l85o6g5l5i"]
+
+[ext_resource type="Texture2D" uid="uid://barlbe78h3ca0" path="res://Assets/Sprites/Items/item_key.png" id="1_1i2m6"]
+[ext_resource type="Script" uid="uid://bc5tcc1wykiwf" path="res://Entity/Player/Inventory/KeyItem.cs" id="1_f6wek"]
+[ext_resource type="AudioStream" uid="uid://isxvqsxgoc5y" path="res://Assets/SFX/UI/Items/keySFX.mp3" id="1_wcj5l"]
+
+[resource]
+script = ExtResource("1_f6wek")
+keycode = "keygrey"
+image = ExtResource("1_1i2m6")
+name = "Grey Key"
+Actions = null
+audio = ExtResource("1_wcj5l")
+metadata/_custom_type_script = "uid://bc5tcc1wykiwf"

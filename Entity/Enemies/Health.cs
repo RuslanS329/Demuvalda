@@ -6,12 +6,15 @@ public partial class Health : Node
     [Signal]
     public delegate void hitEventHandler(float _damage);
     [Signal]
+    public delegate void healedEventHandler(float _health);
+    [Signal]
     public delegate void changedEventHandler(float _health);
     [Signal]
     public delegate void diedEventHandler();
 
     [Export] public bool can_die = true;
     [Export] public bool hitAble = true;
+    [Export] public bool healAble = true;
 
     [Export] public string name = "";
 
@@ -36,6 +39,14 @@ public partial class Health : Node
         if (restoreHealthOnStart)
             health = startHealth;
     }
+    public void getHeal(float amount)
+    {
+        if (!healAble) return;
+        EmitSignal(SignalName.changed, health);
+        EmitSignal(SignalName.healed, amount);
+        health += amount;
+    }
+   
     public void getDamage(float amount)
     {
         GD.Print("I GOT DAMAGE : ", amount);

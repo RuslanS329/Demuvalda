@@ -19,6 +19,7 @@ public partial class SmoothCollision : Area3D
         if (contact != null)
         {
             Vector3 direction = (-contact.GlobalPosition + GlobalPosition).Normalized();
+            direction.Y = 0;
             Parent.GlobalPosition += (direction * (float)delta * Knockback);
         }
     }

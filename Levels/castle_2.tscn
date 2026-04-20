@@ -22,6 +22,7 @@ sky_material = SubResource("ProceduralSkyMaterial_dlhux")
 background_mode = 2
 sky = SubResource("Sky_13s1e")
 tonemap_mode = 3
+tonemap_agx_contrast = 1.84
 ssao_enabled = true
 ssao_intensity = 5.16
 glow_enabled = true
@@ -37,6 +38,8 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_ambient_inject = 0.26
 volumetric_fog_sky_affect = 0.809
+adjustment_enabled = true
+adjustment_saturation = 2.0
 
 [sub_resource type="MultiMesh" id="MultiMesh_14pa4"]
 transform_format = 1
