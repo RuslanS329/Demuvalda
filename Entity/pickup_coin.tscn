@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c6eriuhhgl86h"]
+
+[ext_resource type="Script" uid="uid://lr4qr53rl6kw" path="res://Entity/PickupCoin.cs" id="1_c6nsd"]
+[ext_resource type="ArrayMesh" uid="uid://by30agmc26jb6" path="res://Assets/PickupAble/Coin_Coin_.res" id="3_36xqi"]
+[ext_resource type="PackedScene" uid="uid://db00005dawjj1" path="res://UI/Hints/Hint-E.tscn" id="3_wfuei"]
+[ext_resource type="Material" uid="uid://b3ufhgfuy5nif" path="res://Assets/Materials/Marks/MarkYellow.tres" id="4_wfuei"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m1vf4"]
+radius = 0.74140817
+
+[sub_resource type="QuadMesh" id="QuadMesh_yv0nq"]
+
+[node name="PickupItem" type="Node3D" unique_id=2057021231 node_paths=PackedStringArray("area")]
+script = ExtResource("1_c6nsd")
+area = NodePath("Area3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1338818548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017845064, 0.09544486)
+mesh = ExtResource("3_36xqi")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1176766939]
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1591106005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31619513, 0)
+shape = SubResource("SphereShape3D_m1vf4")
+
+[node name="Hint-E" parent="Area3D" unique_id=940556886 instance=ExtResource("3_wfuei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8240006, -0.019310705)
+
+[node name="Mark" type="MeshInstance3D" parent="." unique_id=901018794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000985235, 0.9547082, -0.0029557142)
+material_override = ExtResource("4_wfuei")
+mesh = SubResource("QuadMesh_yv0nq")

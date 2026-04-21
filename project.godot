@@ -35,7 +35,7 @@ Shortcuts/density_decrement=Object(Shortcut,"resource_local_to_scene":false,"res
 [application]
 
 config/name="Demuvalda"
-run/main_scene="uid://wfdqvicgs8r4"
+run/main_scene="uid://3wt14rhro8b0"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 
@@ -158,6 +158,7 @@ inventory={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://co2ifguntsmcw"]
+
+[ext_resource type="Script" uid="uid://86gqij33hhv5" path="res://Entity/Player/Inventory/HealthAction.cs" id="1_48pit"]
+[ext_resource type="Script" uid="uid://daf2iukw6kv6f" path="res://Entity/Player/Inventory/Item.cs" id="1_kft8n"]
+[ext_resource type="Texture2D" uid="uid://c2mq5p174e2mb" path="res://Assets/Sprites/Items/item_ointment.png" id="2_0p74u"]
+[ext_resource type="AudioStream" uid="uid://cxdpcm5ar35hh" path="res://Assets/SFX/UI/Items/OintmentSFX.mp3" id="2_0rn53"]
+[ext_resource type="AudioStream" uid="uid://2p5sqn2c8nnw" path="res://Assets/SFX/UI/Items/OintmentUsedSFX.mp3" id="5_jgg7g"]
+
+[sub_resource type="Resource" id="Resource_0rn53"]
+script = ExtResource("1_48pit")
+heal = 20.0
+metadata/_custom_type_script = "uid://86gqij33hhv5"
+
+[resource]
+script = ExtResource("1_kft8n")
+image = ExtResource("2_0p74u")
+name = "Ointment"
+Actions = Array[Object]([SubResource("Resource_0rn53")])
+audio = ExtResource("2_0rn53")
+usedAudio = ExtResource("5_jgg7g")
+metadata/_custom_type_script = "uid://daf2iukw6kv6f"

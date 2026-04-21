@@ -9,13 +9,18 @@ public partial class MessageBoxSpawner : Node
     [Export] float offset = 150f;
     public override void _Ready()
     {
-        inventory.ItemAdded += shootMessage;
+        inventory.ItemAdded += message;
+        inventory.coinsAdded += (int coins) => shootMessage("Coins: " + coins.ToString());
 
     }
-    public void shootMessage(Item item)
+    public void message(Item item)
+    {
+        shootMessage(item.name);
+    }
+    public void shootMessage(string name)
     {
         ItemPickedMessage msg = box.Instantiate() as ItemPickedMessage;
-        msg.label.Text = item.name;
+        msg.label.Text = name;
         Tween tween = GetTree().CreateTween();
         Vector2 pos = msg.Position;
         pos.Y = msg.Position.Y + offset;

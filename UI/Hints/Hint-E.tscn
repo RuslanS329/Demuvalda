@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://db00005dawjj1"]
+
+[ext_resource type="Texture2D" uid="uid://b0eprvfbyow6" path="res://Assets/Sprites/UI/Untitled.png" id="1_fysfp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcarh"]
+transparency = 2
+alpha_scissor_threshold = 0.348
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("1_fysfp")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_z_clip_scale = true
+z_clip_scale = 0.99
+distance_fade_mode = 1
+distance_fade_min_distance = 2.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_7fuh3"]
+material = SubResource("StandardMaterial3D_pcarh")
+size = Vector2(0.2, 0.2)
+
+[node name="Hint-E" type="MeshInstance3D" unique_id=940556886]
+mesh = SubResource("QuadMesh_7fuh3")

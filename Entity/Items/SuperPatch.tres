@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://djue337cgo4xm"]
+
+[ext_resource type="Script" uid="uid://daf2iukw6kv6f" path="res://Entity/Player/Inventory/Item.cs" id="1_23jxv"]
+[ext_resource type="Script" uid="uid://86gqij33hhv5" path="res://Entity/Player/Inventory/HealthAction.cs" id="1_jiuwo"]
+[ext_resource type="Texture2D" uid="uid://diwvibeeepdid" path="res://Assets/Levels/Castle2/Castle2_Leefs_albedo.png" id="2_6x2c6"]
+
+[sub_resource type="Resource" id="Resource_tnbsy"]
+script = ExtResource("1_jiuwo")
+heal = 50.0
+metadata/_custom_type_script = "uid://86gqij33hhv5"
+
+[resource]
+script = ExtResource("1_23jxv")
+image = ExtResource("2_6x2c6")
+name = "Super BandAid"
+Actions = Array[Object]([SubResource("Resource_tnbsy")])
+metadata/_custom_type_script = "uid://daf2iukw6kv6f"

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dqdab7bgdi23c" path="res://Entity/PickupItem.cs" id="1_to8k5"]
 [ext_resource type="Resource" uid="uid://da6l85o6g5l5i" path="res://Entity/Items/KeyGrey.tres" id="2_to8k5"]
-[ext_resource type="ArrayMesh" uid="uid://beg6dx8taaa67" path="res://Assets/PickupAble/GreyKey_Cube_002.res" id="3_to8k5"]
+[ext_resource type="ArrayMesh" uid="uid://bvt3d2k6yul7r" path="res://Assets/PickupAble/GreyKey_Cube_002.res" id="3_to8k5"]
 [ext_resource type="Material" uid="uid://cx128dxb8ax8l" path="res://Assets/Materials/Marks/MarkWhite.tres" id="4_bpr5r"]
+[ext_resource type="PackedScene" uid="uid://db00005dawjj1" path="res://UI/Hints/Hint-E.tscn" id="5_bpr5r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m1vf4"]
 radius = 0.74140817
@@ -32,3 +33,6 @@ shape = SubResource("SphereShape3D_m1vf4")
 [node name="Mark" type="MeshInstance3D" parent="." unique_id=901018794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9547082, 0)
 mesh = SubResource("QuadMesh_ny3pj")
+
+[node name="Hint-E" parent="." unique_id=940556886 instance=ExtResource("5_bpr5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8240006, -0.019310705)

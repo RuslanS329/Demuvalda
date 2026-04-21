@@ -43,11 +43,22 @@
 [ext_resource type="AudioStream" uid="uid://c5q7kqe6mlxdm" path="res://Assets/Player/HitSounds/hit10.wav" id="37_j1j43"]
 [ext_resource type="AudioStream" uid="uid://di0084tednm3a" path="res://Assets/Player/HitSounds/hit11.wav" id="38_88acc"]
 [ext_resource type="AudioStream" uid="uid://clgq54l53hst4" path="res://Assets/Player/HitSounds/hit12.wav" id="39_hwgvk"]
+[ext_resource type="AudioStream" uid="uid://dxqr30tadxm21" path="res://Assets/SFX/UI/Items/PickUp.mp3" id="40_p0koi"]
+[ext_resource type="Script" uid="uid://bd50xm41knhxy" path="res://Entity/Player/PickUpSound.cs" id="41_d7xnt"]
+[ext_resource type="AudioStream" uid="uid://b3r268s15uf6e" path="res://Assets/SFX/footstepSFX.mp3" id="42_arvxc"]
+[ext_resource type="Script" uid="uid://bm5gwh8g13ekh" path="res://Entity/Player/Footsteps.cs" id="43_j1j43"]
 [ext_resource type="PackedScene" uid="uid://c58rsecfbtfi" path="res://UI/slot.tscn" id="44_t5df3"]
 [ext_resource type="Script" uid="uid://crat4fd0p3arb" path="res://Entity/Player/Inventory/Inventory.cs" id="44_usauf"]
 [ext_resource type="Resource" uid="uid://bn8sd3sp6x6i6" path="res://Entity/Items/BandAid.tres" id="46_84diu"]
 [ext_resource type="Script" uid="uid://4wnpv8i8ng2k" path="res://Entity/Player/MessageBoxSpawner.cs" id="47_uwy14"]
 [ext_resource type="PackedScene" uid="uid://0h22cmaqjc5m" path="res://UI/item_picked_message.tscn" id="48_8qh8j"]
+[ext_resource type="Texture2D" uid="uid://7jpnx3kvb3vo" path="res://Assets/Sprites/Items/CoinsIcon.png" id="51_88acc"]
+[ext_resource type="Script" uid="uid://c2e8875l3et3c" path="res://Entity/Player/CoinsLabel.cs" id="51_j1j43"]
+[ext_resource type="Script" uid="uid://bn4x45qq0aht6" path="res://Entity/Player/CraftMenu.cs" id="53_hwgvk"]
+[ext_resource type="Resource" uid="uid://co2ifguntsmcw" path="res://Entity/Items/Oitment.tres" id="54_3a0xt"]
+[ext_resource type="Resource" uid="uid://dageidmodtff3" path="res://Entity/Items/BandAidReal.tres" id="55_uej0v"]
+[ext_resource type="Resource" uid="uid://duddt3tgaf3p7" path="res://Entity/Items/SuperBandage.tres" id="56_lt3ig"]
+[ext_resource type="Resource" uid="uid://djue337cgo4xm" path="res://Entity/Items/SuperPatch.tres" id="57_uhb25"]
 
 [sub_resource type="Curve" id="Curve_x1f5c"]
 _limits = [0.0, 0.7, 0.0, 0.5]
@@ -457,6 +468,16 @@ stream = ExtResource("38_88acc")
 [node name="Hit12" type="AudioStreamPlayer" parent="Sounds/HitSounds" unique_id=1466343760]
 stream = ExtResource("39_hwgvk")
 
+[node name="PickUpSound" type="AudioStreamPlayer" parent="Sounds" unique_id=920778182 node_paths=PackedStringArray("inventory")]
+stream = ExtResource("40_p0koi")
+script = ExtResource("41_d7xnt")
+inventory = NodePath("../../Control/Inventory")
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Sounds" unique_id=402538661 node_paths=PackedStringArray("player")]
+stream = ExtResource("42_arvxc")
+script = ExtResource("43_j1j43")
+player = NodePath("../..")
+
 [node name="PlayerUI" parent="." unique_id=46567609 instance=ExtResource("17_eb64r")]
 visible = false
 scale = Vector2(0.7702242, 0.7702242)
@@ -522,57 +543,113 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("44_usauf")
-slots = [NodePath("PanelContainer/MarginContainer/GridContainer/Slot"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot2"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot3"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot4"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot5"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot6"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot7"), NodePath("PanelContainer/MarginContainer/GridContainer/Slot8")]
+slots = [NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot2"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot3"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot4"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot5"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot6"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot7"), NodePath("HBoxContainer2/PanelContainer/MarginContainer/GridContainer/Slot8")]
 playerHealth = NodePath("../../Health")
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/Inventory" unique_id=1740966439]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Inventory" unique_id=306857344]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="CoinsLabel" type="Label" parent="Control/Inventory/HBoxContainer" unique_id=184587921 node_paths=PackedStringArray("inventory")]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 29
+text = "Coins: 4900"
+script = ExtResource("51_j1j43")
+inventory = NodePath("../..")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Inventory/HBoxContainer" unique_id=555250228]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("51_88acc")
+expand_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Inventory" unique_id=1686643293]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Inventory/HBoxContainer2" unique_id=1740966439]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Inventory/PanelContainer" unique_id=1988567030]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Inventory/HBoxContainer2/PanelContainer" unique_id=1988567030]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="GridContainer" type="GridContainer" parent="Control/Inventory/PanelContainer/MarginContainer" unique_id=1551773183]
+[node name="GridContainer" type="GridContainer" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer" unique_id=1551773183]
 layout_mode = 2
 columns = 4
 
-[node name="Slot" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=872294400 instance=ExtResource("44_t5df3")]
+[node name="Slot" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=872294400 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = ExtResource("46_84diu")
 
-[node name="Slot2" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=657777336 instance=ExtResource("44_t5df3")]
+[node name="Slot2" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=657777336 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = ExtResource("46_84diu")
 
-[node name="Slot3" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1307230514 instance=ExtResource("44_t5df3")]
+[node name="Slot3" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=1307230514 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = ExtResource("46_84diu")
 
-[node name="Slot4" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=208612788 instance=ExtResource("44_t5df3")]
+[node name="Slot4" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=208612788 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = null
 
-[node name="Slot5" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1863750323 instance=ExtResource("44_t5df3")]
+[node name="Slot5" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=1863750323 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = null
 
-[node name="Slot6" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1302516576 instance=ExtResource("44_t5df3")]
+[node name="Slot6" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=1302516576 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = null
 
-[node name="Slot7" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1668144483 instance=ExtResource("44_t5df3")]
+[node name="Slot7" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=1668144483 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = null
 
-[node name="Slot8" parent="Control/Inventory/PanelContainer/MarginContainer/GridContainer" unique_id=1158018150 instance=ExtResource("44_t5df3")]
+[node name="Slot8" parent="Control/Inventory/HBoxContainer2/PanelContainer/MarginContainer/GridContainer" unique_id=1158018150 instance=ExtResource("44_t5df3")]
 layout_mode = 2
 item = null
+
+[node name="CraftMenu" type="PanelContainer" parent="Control/Inventory/HBoxContainer2" unique_id=644889570 node_paths=PackedStringArray("inventory", "sBandageButton", "sPatchButton")]
+process_mode = 3
+custom_minimum_size = Vector2(200, 500)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("53_hwgvk")
+inventory = NodePath("../..")
+ointment = ExtResource("54_3a0xt")
+bandage = ExtResource("46_84diu")
+patch = ExtResource("55_uej0v")
+sBandageButton = NodePath("VBoxContainer/Button")
+sPatchButton = NodePath("VBoxContainer/Button2")
+superBan = ExtResource("56_lt3ig")
+superPatch = ExtResource("57_uhb25")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Inventory/HBoxContainer2/CraftMenu" unique_id=1865280804]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Inventory/HBoxContainer2/CraftMenu/VBoxContainer" unique_id=143720674]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Crafts"
+
+[node name="Button" type="Button" parent="Control/Inventory/HBoxContainer2/CraftMenu/VBoxContainer" unique_id=1508635225]
+visible = false
+layout_mode = 2
+text = "Bandage+Ointment"
+
+[node name="Button2" type="Button" parent="Control/Inventory/HBoxContainer2/CraftMenu/VBoxContainer" unique_id=207736479]
+visible = false
+layout_mode = 2
+text = "Patch+Ointment"
 
 [node name="Timings" type="Node" parent="." unique_id=1697776339]
 

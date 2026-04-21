@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cn21ba77xy3p2"]
 
-[ext_resource type="ArrayMesh" uid="uid://dj38cxrqsyyu8" path="res://Assets/PickupAble/Bandage_Cylinder_001.res" id="1_ev56s"]
+[ext_resource type="ArrayMesh" uid="uid://8yvxiyapcg4k" path="res://Assets/PickupAble/Bandage_Cylinder_001.res" id="1_ev56s"]
 [ext_resource type="Script" uid="uid://dqdab7bgdi23c" path="res://Entity/PickupItem.cs" id="1_m1vf4"]
 [ext_resource type="Resource" uid="uid://bn8sd3sp6x6i6" path="res://Entity/Items/BandAid.tres" id="2_td6kf"]
 [ext_resource type="Material" uid="uid://dbm0a4har4ojx" path="res://Assets/Materials/Marks/MarkGreen.tres" id="3_ny3pj"]
+[ext_resource type="PackedScene" uid="uid://db00005dawjj1" path="res://UI/Hints/Hint-E.tscn" id="5_ptsy3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m1vf4"]
 radius = 0.74140817
@@ -33,3 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9547082, 0)
 material_override = ExtResource("3_ny3pj")
 material_overlay = ExtResource("3_ny3pj")
 mesh = SubResource("QuadMesh_ny3pj")
+
+[node name="Hint-E" parent="." unique_id=940556886 instance=ExtResource("5_ptsy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8240006, -0.019310705)

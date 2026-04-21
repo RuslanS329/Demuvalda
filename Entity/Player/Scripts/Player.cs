@@ -36,6 +36,7 @@ public partial class Player : CharacterBody3D
 
     public Vector3 velocity;
     public Vector3 boost;
+    public Vector2 inputDirection;
 
 
     public override void _Ready()
@@ -68,6 +69,7 @@ public partial class Player : CharacterBody3D
 
         Vector2 inputDir = getInputDirection();
 
+        inputDirection = inputDir;
         Vector3 direction = getDirection(inputDir);
 
         velocity = CalculateVelocityXZ(velocity, direction);

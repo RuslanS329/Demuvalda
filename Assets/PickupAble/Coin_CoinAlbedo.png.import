@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tsh63o06jnp0"
-path.s3tc="res://.godot/imported/Slot.svg-49b0d868cd2a289c6059aca6ac086ee2.s3tc.ctex"
+uid="uid://vv4grxs7hlqb"
+path.s3tc="res://.godot/imported/Coin_CoinAlbedo.png-ba8ddd486041ce475f088eb384882411.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "0e044a33d49618110fca91733f2693f1"
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/Slot.svg"
-dest_files=["res://.godot/imported/Slot.svg-49b0d868cd2a289c6059aca6ac086ee2.s3tc.ctex"]
+source_file="res://Assets/PickupAble/Coin_CoinAlbedo.png"
+dest_files=["res://.godot/imported/Coin_CoinAlbedo.png-ba8ddd486041ce475f088eb384882411.s3tc.ctex"]
 
 [params]
 
@@ -26,7 +29,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
 process/channel_remap/red=0
 process/channel_remap/green=1
@@ -39,6 +42,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=0.5
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

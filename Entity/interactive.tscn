@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c22vhxt0ldt3m"]
+
+[ext_resource type="Script" uid="uid://c7fp487ht5dwc" path="res://Entity/Interactive.cs" id="1_yd2un"]
+
+[node name="Interactive" type="Area3D" unique_id=708007278 node_paths=PackedStringArray("audioPlayer")]
+collision_layer = 512
+collision_mask = 512
+monitorable = false
+script = ExtResource("1_yd2un")
+audioPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1233359292]

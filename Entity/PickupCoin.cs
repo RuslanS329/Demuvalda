@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class PickupItem : Node3D
+public partial class PickupCoin : Node3D
 {
-    [Export] public Item item;
+    [Export] int amount = 10;
     [Export] Area3D area;
     private bool isInside = false;
     private Inventory inventory;
@@ -18,21 +18,15 @@ public partial class PickupItem : Node3D
         {
             if (Input.IsActionJustPressed("e"))
             {
-                
-                if(inventory.addItem(item))
-                {
-                    QueueFree();
-                }
-                else
-                {
-                    GD.Print(" add item failed");
-                }
+                inventory.addCoins(amount);
+                QueueFree();
+                //ADD coins
             }
         }
     }
     public void entered(Node3D body)
     {
-        if(body is Player player)
+        if (body is Player player)
         {
             isInside = true;
             inventory = player.inventory;
@@ -41,7 +35,7 @@ public partial class PickupItem : Node3D
     }
     public void exited(Node3D body)
     {
-        if(body is Player)
+        if (body is Player)
         {
             isInside = false;
             GD.Print("Player exited");

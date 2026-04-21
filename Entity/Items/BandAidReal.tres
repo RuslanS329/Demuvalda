@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dageidmodtff3"]
+
+[ext_resource type="Script" uid="uid://86gqij33hhv5" path="res://Entity/Player/Inventory/HealthAction.cs" id="1_4oupv"]
+[ext_resource type="Script" uid="uid://daf2iukw6kv6f" path="res://Entity/Player/Inventory/Item.cs" id="1_el5ao"]
+[ext_resource type="AudioStream" uid="uid://dgr1o0ygbuu6s" path="res://Assets/SFX/UI/Items/cloth.mp3" id="2_jy1qj"]
+[ext_resource type="Texture2D" uid="uid://0ovhtewiaggv" path="res://Assets/Sprites/icon.svg" id="3_qx0b0"]
+[ext_resource type="AudioStream" uid="uid://o6c14q3vjb7q" path="res://Assets/SFX/UI/Items/bandaidusedSFX.mp3" id="5_26c7p"]
+
+[sub_resource type="Resource" id="Resource_b11uf"]
+script = ExtResource("1_4oupv")
+heal = 15.0
+metadata/_custom_type_script = "uid://86gqij33hhv5"
+
+[resource]
+script = ExtResource("1_el5ao")
+image = ExtResource("3_qx0b0")
+name = "Band-Aid"
+Actions = Array[Object]([SubResource("Resource_b11uf")])
+audio = ExtResource("2_jy1qj")
+usedAudio = ExtResource("5_26c7p")
+metadata/_custom_type_script = "uid://daf2iukw6kv6f"
